@@ -7,7 +7,7 @@ public class InputSystem { //Класс отвечающий за ввод ко�
     static Scanner sc = new Scanner(System.in);
     static boolean Bflag = false;
     public static void Read(){
-     while (sc.hasNext()){  //цикл работы программы
+     while (true){  //цикл работы программы
 
         String line = sc.next();
         String[] tokens = line.split(" ");
