@@ -25,10 +25,7 @@ public class HumanBeing {
         this.mood = mood;
         this.car = car;
     }
-    public class Coordinates {
-        private long x;
-        private double y; //Значение поля должно быть больше -275
-    }
+
     public class Car {
         private String name; //Поле не может быть null
         private boolean cool;
