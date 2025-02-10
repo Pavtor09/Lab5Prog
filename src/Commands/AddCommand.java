@@ -22,7 +22,7 @@ public class AddCommand implements ICommand{
 //        System.out.println("Enter parameters: String name, Boolean realHero, boolean HasToothPick, Double ImpactSeed(max 646), String Soundtrack");
         Scanner sc = new Scanner(System.in);
           String line = arg;
-
+          System.out.println(line);
         if (FieldSpread(line))
         {
             System.out.println("Enter coordinates(first number must be long, second - double)");
@@ -31,7 +31,8 @@ public class AddCommand implements ICommand{
             if (words.length == 2 && Numcheck(words[0]) && Numcheck(words[1])) {
                 cords = new Coordinates(Long.parseLong(words[0]),Double.parseDouble(words[1]));
                 System.out.println("Enter weapon type");
-//                System.out.println(HumanBeing.WeaponType.values());
+                HumanBeing.WeaponType.PrintWeapons();
+
             }
             else{
                 System.out.println("Coordinates must be Long and Double");
@@ -49,19 +50,19 @@ public class AddCommand implements ICommand{
 
     boolean FieldSpread(String line)
     {   String[] tokens = line.split(" ");
-        if (tokens.length == 5){
+        if (tokens.length == 6){
 
 
 
-            if(Numcheck(tokens[3])) {
+            if(Numcheck(tokens[4])) {
                 this.impactSeed = Double.parseDouble(tokens[3]);
                 if (this.impactSeed <= 646)
                 {
-                    this.name = tokens[0];
-                    this.realHero = (tokens[1].equals("true"));
-                    this.hasToothPick = (tokens[2].equals("true"));
+                    this.name = tokens[1];
+                    this.realHero = (tokens[2].equals("true"));
+                    this.hasToothPick = (tokens[3].equals("true"));
 
-                    this.soundtrack = tokens[4];
+                    this.soundtrack = tokens[5];
                     return true;
                 }
                 else{

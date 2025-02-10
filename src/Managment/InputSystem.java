@@ -9,7 +9,7 @@ public class InputSystem { //Класс отвечающий за ввод ко�
     public static void Read(){
      while (true){  //цикл работы программы
 
-        String line = sc.next();
+        String line = sc.nextLine();
         String[] tokens = line.split(" ");
         ICommand curcommand = CommandManager.CommandMap.get(tokens[0]);
         curcommand.execute(line);

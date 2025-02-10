@@ -1,5 +1,7 @@
 package StartData;
 
+import java.util.HashMap;
+
 public class HumanBeing {
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -35,7 +37,9 @@ public class HumanBeing {
         RIFLE,
         KNIFE;
         public static void PrintWeapons(){
-
+            System.out.println(WeaponType.HAMMER.toString());
+            System.out.println(WeaponType.RIFLE.toString());
+            System.out.println(WeaponType.KNIFE.toString());
         }
     }
     public enum Mood {
