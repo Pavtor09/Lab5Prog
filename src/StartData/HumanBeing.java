@@ -34,6 +34,9 @@ public class HumanBeing {
         HAMMER,
         RIFLE,
         KNIFE;
+        public static void PrintWeapons(){
+
+        }
     }
     public enum Mood {
         LONGING,
