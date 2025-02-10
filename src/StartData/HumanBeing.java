@@ -1,5 +1,6 @@
 package StartData;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class HumanBeing {
@@ -28,10 +29,7 @@ public class HumanBeing {
         this.car = car;
     }
 
-    public class Car {
-        private String name; //Поле не может быть null
-        private boolean cool;
-    }
+
     public enum WeaponType {
         HAMMER,
         RIFLE,
@@ -46,5 +44,11 @@ public class HumanBeing {
         LONGING,
         APATHY,
         CALM;
+        public static void PrintMood()
+        {
+            System.out.println(LONGING.toString());
+            System.out.println(APATHY.toString());
+            System.out.println(CALM.toString());
+        }
     }
 }
