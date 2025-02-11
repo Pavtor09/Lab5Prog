@@ -1,5 +1,6 @@
 package Commands;
 import  Managment.*;
+import StartData.Car;
 import StartData.Coordinates;
 import StartData.HumanBeing;
 
@@ -15,15 +16,14 @@ public class AddCommand implements ICommand{
     Coordinates cords;
     HumanBeing.WeaponType weaponType;
     HumanBeing.Mood mood;
-    HumanBeing.Car car;
+    Car car;
 
     public void execute(String arg)
     {
 //        System.out.println("Enter parameters: String name, Boolean realHero, boolean HasToothPick, Double ImpactSeed(max 646), String Soundtrack");
         Scanner sc = new Scanner(System.in);
           String line = arg;
-          System.out.println(line);
-        if (FieldSpread(line))
+        if (FieldSpread(line)) // проверка наличия ошибок во введённых аргументах
         {
             System.out.println("Enter coordinates(first number must be long, second - double)");
             line = sc.nextLine();
@@ -32,6 +32,43 @@ public class AddCommand implements ICommand{
                 cords = new Coordinates(Long.parseLong(words[0]),Double.parseDouble(words[1]));
                 System.out.println("Enter weapon type");
                 HumanBeing.WeaponType.PrintWeapons();
+                line = sc.nextLine();
+                try {
+                    this.weaponType = HumanBeing.WeaponType.valueOf(line);
+                }
+                catch (Exception e)
+                {
+                    System.out.println("There is no such weapon");
+                }
+
+                if (weaponType != null)
+                {
+                    System.out.println("Enter Mood");
+                    HumanBeing.Mood.PrintMood();
+                    line = sc.nextLine();
+                    try {
+                        this.mood = HumanBeing.Mood.valueOf(line);
+                    }
+                    catch (Exception e)
+                    {
+                        if (line != "")
+                        {System.out.println(e.getMessage());}
+                    }
+                    if (this.mood != null || line == ""){
+                        System.out.println("Enter car(String name Boolean cool)");
+                        line = sc.nextLine();
+                        words = line.split(" ");
+                        if (words[1].equals("true") || words[1].equals("false")) {
+                            this.car = new Car(words[0],words[1].equals("true"));
+
+                            CollectionManager.Add(this.name,this.cords,this.realHero,this.hasToothPick,this.impactSeed,this.soundtrack,this.weaponType,this.mood,this.car);
+                        }
+                        else{
+                            System.out.println("Boolean can only be true or false");
+                        }
+
+                    }
+                }
 
             }
             else{
@@ -48,22 +85,28 @@ public class AddCommand implements ICommand{
     }
 
 
-    boolean FieldSpread(String line)
+    boolean FieldSpread(String line) //Метод разделяет строку по значениям, определяет правильное ли их количество и того ли они типа, записывает данные в промежуточные переменные, и если всё правильно возвращает значение true
     {   String[] tokens = line.split(" ");
         if (tokens.length == 6){
 
 
 
-            if(Numcheck(tokens[4])) {
-                this.impactSeed = Double.parseDouble(tokens[3]);
+            if(Numcheck(tokens[4])) { // проверка на то, что строка число
+                this.impactSeed = Double.parseDouble(tokens[4]);
                 if (this.impactSeed <= 646)
                 {
                     this.name = tokens[1];
-                    this.realHero = (tokens[2].equals("true"));
-                    this.hasToothPick = (tokens[3].equals("true"));
+                    if ((tokens[2].equals("true")||tokens[2].equals("false"))&&(tokens[3].equals("true")||tokens[3].equals("false"))) {
+                        this.realHero = (tokens[2].equals("true"));
+                        this.hasToothPick = (tokens[3].equals("true"));
 
-                    this.soundtrack = tokens[5];
-                    return true;
+                        this.soundtrack = tokens[5];
+                        return true;
+                    }
+                    else{
+                        System.out.println("Boolean can only be true or false");
+                        return false;
+                    }
                 }
                 else{
                     System.out.println("ImpactSeed must be under 647");
@@ -84,15 +127,27 @@ public class AddCommand implements ICommand{
 
     }
 
-    boolean Numcheck(String str)
+    boolean Numcheck(String str)// Метод проверяет, является ли строка числом(а так же числом с плавающей точкой)
     {
+        int dotcount = 0;
         for(int i = 0;i < str.length();i++)
         {
-            if (!Character.isDigit(str.charAt(i)))
+            if (!(Character.isDigit(str.charAt(i)) || str.charAt(i) == '.'))
             {
                 return false;
             }
-        }
+            else{
+                    if (str.charAt(i) == '.') {
+                        dotcount ++;
+                        if (dotcount > 1)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+            }
+
         return true;
     }
 }
