@@ -10,6 +10,7 @@ public static void Add(){
     CommandMap.put("help",new HelpCommand());
     CommandMap.put("exit",new ExitCommand());
     CommandMap.put("add",new AddCommand());
+    CommandMap.put("info",new InfoCommand());
 
 
     }

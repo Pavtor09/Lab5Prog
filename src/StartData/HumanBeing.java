@@ -47,6 +47,10 @@ public class HumanBeing {
         this.car = car;
         System.out.println("Element has been added");
     }
+    public ZonedDateTime GetTime()
+    {
+        return this.creationDate;
+    }
 
 
     public enum WeaponType {

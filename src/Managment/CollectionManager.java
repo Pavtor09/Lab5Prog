@@ -4,7 +4,7 @@ import StartData.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 public class CollectionManager {
-static Set<HumanBeing> HumanCollection = new LinkedHashSet<>(); // Сет, в котором хранится коллекция
+public static Set<HumanBeing> HumanCollection = new LinkedHashSet<>(); // Сет, в котором хранится коллекция
 public static void Add(String name, Coordinates coordinates, Boolean realHero, boolean toothpick, double impactSpeed, String soundtrackName, HumanBeing.WeaponType weaponType, HumanBeing.Mood mood, Car car) throws WrongArgumentException // Метод, который передаёт аргументы с клавиатуры в конструктор и добавляет новый элемент в коллекцию
 {
 
