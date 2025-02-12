@@ -18,6 +18,6 @@ public class InfoCommand implements ICommand{
     }
     public String describe()
     {
-        return "";
+        return "Writes information about collection";
     }
 }

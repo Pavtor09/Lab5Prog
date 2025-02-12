@@ -1,14 +1,30 @@
 package Managment;
 import Commands.WrongArgumentException;
 import StartData.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 public class CollectionManager {
 public static Set<HumanBeing> HumanCollection = new LinkedHashSet<>(); // Сет, в котором хранится коллекция
 public static void Add(String name, Coordinates coordinates, Boolean realHero, boolean toothpick, double impactSpeed, String soundtrackName, HumanBeing.WeaponType weaponType, HumanBeing.Mood mood, Car car) throws WrongArgumentException // Метод, который передаёт аргументы с клавиатуры в конструктор и добавляет новый элемент в коллекцию
 {
+        ZonedDateTime creationDate;
+        LocalDate time = LocalDate.now();
+        String strtime = time.toString();
+        strtime = strtime.replaceAll("-","");
+        strtime = strtime.replaceAll(":","");
+        strtime = strtime.replaceAll("\\.","");
+        strtime = strtime.replaceAll("T","");
+        strtime = strtime.substring(3,strtime.length()-1);
+        strtime += LocalTime.now().toString().replaceAll(":","").replaceAll("\\..*","");
 
-        HumanCollection.add(new HumanBeing(name,coordinates,realHero, toothpick, impactSpeed, soundtrackName, weaponType, mood, car));
+        strtime += realHero?1:0;
+        strtime += toothpick?1:0;
+        creationDate = ZonedDateTime.now();
+        HumanCollection.add(new HumanBeing(name,coordinates,realHero, toothpick, impactSpeed, soundtrackName, weaponType, mood, car,Long.parseLong(strtime),creationDate));
 
         
 }

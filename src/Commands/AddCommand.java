@@ -39,6 +39,7 @@ public class AddCommand implements ICommand{
                 catch (Exception e)
                 {
                     System.out.println("There is no such weapon");
+                    weaponType = null;
                 }
 
                 if (weaponType != null)

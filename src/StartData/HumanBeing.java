@@ -19,23 +19,12 @@ public class HumanBeing {
     private WeaponType weaponType; //Поле не может быть null
     private Mood mood; //Поле может быть null
     private Car car; //Поле не может быть null
-    static int number = 0;
-    public HumanBeing(String name, Coordinates cords, Boolean realHero,boolean toothpick, double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood,Car car)
+
+    public HumanBeing(String name, Coordinates cords, Boolean realHero,boolean toothpick, double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood,Car car,Long id, ZonedDateTime crdate)
     {
-        LocalDate time = LocalDate.now();
-        String strtime = time.toString();
-        strtime = strtime.replaceAll("-","");
-        strtime = strtime.replaceAll(":","");
-        strtime = strtime.replaceAll("\\.","");
-        strtime = strtime.replaceAll("T","");
-        strtime = strtime.substring(3,strtime.length()-1);
-        strtime += number;
-        strtime += LocalTime.now().toString().replaceAll(":","").replaceAll("\\..*","");
-        number += 1;
-        strtime += realHero?1:0;
-        strtime += toothpick?1:0;
-        creationDate = ZonedDateTime.now();
-        this.id = Long.parseLong(strtime);
+
+        this.id = id;
+        this.creationDate = crdate;
         this.name = name;
         this.coordinates = cords;
         this.realHero = realHero;
