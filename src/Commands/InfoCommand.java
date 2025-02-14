@@ -8,14 +8,20 @@ public class InfoCommand implements ICommand{
     public void execute(String arg)
     {
         HumanBeing last = null;
-        Iterator<HumanBeing> iter = CollectionManager.HumanCollection.iterator();
+        if(CollectionManager.getsize() > 0)
+        {Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
 //        while (iter.hasNext())
 //        {
             last = iter.next();
 //        }
 
-        System.out.println("Type of collection: "+CollectionManager.HumanCollection.getClass().toString()+" | Time of initialization "+ (last != null?last.GetTime().toString().replaceAll("\\..*","").replace("T"," "):"-")+" | Collection size: " +CollectionManager.HumanCollection.size());
+        System.out.println("Type of collection: "+CollectionManager.getclass().toString()+" | Time of initialization "+ (last != null?last.GetTime().toString().replaceAll("\\..*","").replace("T"," "):"-")+" | Collection size: " +CollectionManager.getsize());
+        }
+        else {
+            System.out.println("Collection is empty");
+        }
     }
+
     public String describe()
     {
         return "Writes information about collection";
