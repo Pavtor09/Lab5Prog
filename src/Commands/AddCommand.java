@@ -83,8 +83,12 @@ public class AddCommand implements ICommand{
 //        }
 //
 //
-        System.out.println(arg);
+//        System.out.println(arg);
         InputChecker.ArgCheck(arg,";",1);
+        if (InputChecker.ArgCheck(arg,";",1))
+        {
+            System.out.println("yEEEEEEEEEEE");
+        }
     }
 
     @Override
@@ -135,27 +139,5 @@ public class AddCommand implements ICommand{
 
 //    }
 
-    boolean Numcheck(String str)// Метод проверяет, является ли строка числом(а так же числом с плавающей точкой)
-    {
-        int dotcount = 0;
-        for(int i = 0;i < str.length();i++)
-        {
-            if (!(Character.isDigit(str.charAt(i)) || str.charAt(i) == '.'))
-            {
-                return false;
-            }
-            else{
-                    if (str.charAt(i) == '.') {
-                        dotcount ++;
-                        if (dotcount > 1)
-                        {
-                            return false;
-                        }
-                    }
-                }
 
-            }
-
-        return true;
-    }
 }
