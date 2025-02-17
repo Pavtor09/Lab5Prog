@@ -7,24 +7,26 @@ public class InputChecker {
         int lenth = words.length;
         boolean state = true;
             flag:
-            for (int i = 0; i < 5;i++)
+            for (int i = 0; i < 11;i++)
             {
-                System.out.println(words[i+offset]+" "+i);
                 switch (i)
                 {
                     case (0):
                     {
-                        System.out.println("REEEEEEEEEE");
+//                        System.out.println("case(0) "+words[i+offset]);
                         if (words[i+offset].isEmpty())
                         {   System.out.println("empty string "+words[i+offset]);
                             state = false;
                             break flag;
 
+
                         }
+                        break;
 
                     }
                     case(1):
                     {
+//                        System.out.println("case(1) "+words[i+offset]);
                         if(!(words[i+offset].equals("true") || words[i+offset].equals("false")))
                         {
                             System.out.println("indx="+(i+offset));
@@ -32,18 +34,22 @@ public class InputChecker {
                             state = false;
                             break flag;
                         }
+                        break;
                     }
                     case(2):
                     {
+                        System.out.println("case(2) "+words[i+offset]);
                         if(!(words[i+offset].equals("true") || words[i+offset].equals("false")))
                         {
-                            System.out.println("Not true or false "+words[i+offset]);
+//                            System.out.println("Not true or false "+words[i+offset]);
                             state = false;
                             break flag;
                         }
+                        break;
                     }
                     case(3):
                     {
+//                        System.out.println("case(3) "+words[i+offset]);
                         if(!(Numcheck(words[i+offset])))
                         {
                             System.out.println("Not num");
@@ -58,19 +64,30 @@ public class InputChecker {
                                 break flag;
                             }
                         }
+                        break;
 
                     }
                     case(4):
                     {
+//                        System.out.println("case(4) "+words[i+offset]);
                         if (words[i+offset].isEmpty())
                         {
                             state = false;
                             break flag;
                         }
+                        break;
+                    }
+                    case(5):
+                    {
+
                     }
 
 
+
+
                 }
+                System.out.println(words[i+offset]+" "+i);
+
 
             }
 
