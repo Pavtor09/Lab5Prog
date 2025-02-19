@@ -1,8 +1,11 @@
 package Managment;
 
+import StartData.HumanBeing;
+
 public class InputChecker {
     public static boolean ArgCheck(String line,String sep, int offset)
     {
+
         String[] words = line.split(sep);
         int lenth = words.length;
         boolean state = true;
@@ -13,7 +16,7 @@ public class InputChecker {
                 {
                     case (0):
                     {
-//                        System.out.println("case(0) "+words[i+offset]);
+
                         if (words[i+offset].isEmpty())
                         {   System.out.println("empty string "+words[i+offset]);
                             state = false;
@@ -24,32 +27,22 @@ public class InputChecker {
                         break;
 
                     }
-                    case(1):
+                    case 1, 2:
                     {
-//                        System.out.println("case(1) "+words[i+offset]);
+//
                         if(!(words[i+offset].equals("true") || words[i+offset].equals("false")))
                         {
-                            System.out.println("indx="+(i+offset));
+
                             System.out.println("Not true or false "+words[i+offset]);
                             state = false;
                             break flag;
                         }
                         break;
                     }
-                    case(2):
-                    {
-                        System.out.println("case(2) "+words[i+offset]);
-                        if(!(words[i+offset].equals("true") || words[i+offset].equals("false")))
-                        {
-//                            System.out.println("Not true or false "+words[i+offset]);
-                            state = false;
-                            break flag;
-                        }
-                        break;
-                    }
+
                     case(3):
                     {
-//                        System.out.println("case(3) "+words[i+offset]);
+//
                         if(!(Numcheck(words[i+offset])))
                         {
                             System.out.println("Not num");
@@ -60,6 +53,7 @@ public class InputChecker {
                         {
                             if (Double.parseDouble(words[i+offset]) > 646)
                             {
+                                System.out.println("Number "+words[i+offset]+" over the max value of 646");
                                 state = false;
                                 break flag;
                             }
@@ -69,9 +63,10 @@ public class InputChecker {
                     }
                     case(4):
                     {
-//                        System.out.println("case(4) "+words[i+offset]);
+//
                         if (words[i+offset].isEmpty())
                         {
+                            System.out.println("Empty string");
                             state = false;
                             break flag;
                         }
@@ -79,14 +74,97 @@ public class InputChecker {
                     }
                     case(5):
                     {
+                        String[] spl = words[i+offset].split(" ");
+
+                        if (spl.length == 2){
+                            if(!(Numcheck(spl[0]) && Numcheck(spl[1])))
+                            {
+                                System.out.println("Coordinates must be numbers");
+                                state = false;
+                                break flag;
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("Wrong number of arguments "+words[i+offset]);
+                            state = false;
+                            break flag;
+                        }
+                        break;
+                    }
+                    case(6):
+                    {
+                        System.out.println("6");
+                        HumanBeing.WeaponType Weapon;
+                        try
+                        {
+                            Weapon = HumanBeing.WeaponType.valueOf(words[i+offset]);
+                        }
+                        catch (Exception e)
+                        {
+                            System.out.println("There is no such weapon "+words[i+offset]);
+                            Weapon = null;
+                            state = false;
+
+                            break flag;
+                        }
+                        break;
 
                     }
+                    case(7):
+                    {
+                            HumanBeing.Mood mood;
+                            if (!words[i+offset].isEmpty())
+                            {
+                                try
+                                {
+                                    mood = HumanBeing.Mood.valueOf(words[i+offset]);
+                                }
+                                catch (Exception e)
+                                {
+                                    System.out.println("There is no such mood "+words[i+offset]);
+                                    mood = null;
+                                    state = false;
 
+                                    break flag;
+                                }
 
-
+                            }
+                        break;
+                    }
+                    case(8):
+                    {
+                        String[] spl = words[i+offset].split(" ");
+                        if (spl.length == 2)
+                        {
+                            if (!(spl[1].equals("true") || spl[1].equals("false")))
+                            {
+                                System.out.println("Not true or false " + words[i+offset]);
+                                state = false;
+                                break flag;
+                            }
+                            if (spl[0].isEmpty())
+                            {
+                                System.out.println("Name can't be empty");
+                                state = false;
+                                break flag;
+                            }
+                        }
+                        else{
+                            System.out.println("Wrong number of arguments "+words[i+offset]);
+                            state = false;
+                            break flag;
+                        }
+                        break;
+                    }
 
                 }
-                System.out.println(words[i+offset]+" "+i);
+
+
+
+
+
+
 
 
             }

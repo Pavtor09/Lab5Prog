@@ -63,6 +63,7 @@ public class AddCommand implements ICommand{
 //                    if (this.mood != null || line == ""){
                         System.out.println("Enter car(String name Boolean cool)");
                         line = sc.nextLine();
+                        arg+= ";"+line;
 //                        words = line.split(" ");
 //                        if (words[1].equals("true") || words[1].equals("false")) {
 //                            this.car = new Car(words[0],words[1].equals("true"));
@@ -84,7 +85,7 @@ public class AddCommand implements ICommand{
 //
 //
 //        System.out.println(arg);
-        InputChecker.ArgCheck(arg,";",1);
+
         if (InputChecker.ArgCheck(arg,";",1))
         {
             System.out.println("yEEEEEEEEEEE");
