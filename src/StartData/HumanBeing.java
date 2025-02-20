@@ -20,7 +20,7 @@ public class HumanBeing {
     private Mood mood; //Поле может быть null
     private Car car; //Поле не может быть null
 
-    public HumanBeing(String name, Coordinates cords, Boolean realHero,boolean toothpick, double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood,Car car,Long id, ZonedDateTime crdate)
+    public HumanBeing(String name, Boolean realHero,boolean toothpick, double impactSpeed, String soundtrackName, Coordinates cords, WeaponType weaponType, Mood mood,Car car,Long id, ZonedDateTime crdate)
     {
 
         this.id = id;
@@ -34,7 +34,7 @@ public class HumanBeing {
         this.weaponType =  weaponType;
         this.mood = mood;
         this.car = car;
-        System.out.println("Element has been added");
+
     }
     public ZonedDateTime GetTime()
     {
@@ -43,7 +43,11 @@ public class HumanBeing {
 
     public String GetValues()
     {
-    return id+";"+creationDate+";"+name+";"+realHero+";"+hasToothpick+";"+impactSpeed+";"+soundtrackName+";"+coordinates.GetStringCords()+";"+weaponType+";"+mood+";"+car.GetStringCar();
+    return name+";"+realHero+";"+hasToothpick+";"+impactSpeed+";"+soundtrackName+";"+coordinates.GetStringCords()+";"+weaponType+";"+mood+";"+car.GetStringCar()+";"+id+";"+creationDate;
+    }
+    public long GetId()
+    {
+        return id;
     }
     public enum WeaponType {
         HAMMER,

@@ -26,8 +26,8 @@ public static void Add(String name,Boolean realHero, boolean toothpick, double i
         strtime += realHero?1:0;
         strtime += toothpick?1:0;
         creationDate = ZonedDateTime.now();
-        HumanCollection.add(new HumanBeing(name,coordinates,realHero, toothpick, impactSpeed, soundtrackName, weaponType, mood, car,Long.parseLong(strtime),creationDate));
-
+        HumanCollection.add(new HumanBeing(name,realHero, toothpick, impactSpeed, soundtrackName,coordinates, weaponType, mood, car,Long.parseLong(strtime),creationDate));
+        System.out.println("Element has been added");
         
 }
 public  static Iterator<HumanBeing> GetIenerator()
@@ -41,6 +41,10 @@ public static Class getclass()
 public static int getsize()
 {
 return HumanCollection.size();
+}
+public static void CollectionReplace(Set<HumanBeing> TempHumanCollection){
+HumanCollection.clear();
+HumanCollection = TempHumanCollection;
 }
 
 //    static boolean ArgChech(String name, Coordinates coordinates, Boolean realHero, boolean toothpick, double impactSpeed, String soundtrackName, HumanBeing.WeaponType weaponType, HumanBeing.Mood mood, Car car)
