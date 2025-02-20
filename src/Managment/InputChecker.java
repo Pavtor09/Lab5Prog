@@ -94,7 +94,7 @@ public class InputChecker {
                     }
                     case(6):
                     {
-                        System.out.println("6");
+
                         HumanBeing.WeaponType Weapon;
                         try
                         {
