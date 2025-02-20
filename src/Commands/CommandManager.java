@@ -11,7 +11,7 @@ public static void Add(){
     CommandMap.put("exit",new ExitCommand());
     CommandMap.put("add",new AddCommand());
     CommandMap.put("info",new InfoCommand());
-
+    CommandMap.put("show", new ShowCommand());
 
     }
 }

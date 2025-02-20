@@ -83,6 +83,14 @@ public class InputChecker {
                                 state = false;
                                 break flag;
                             }
+                            else {
+                                if (Double.parseDouble(spl[1]) <= -275)
+                                {
+                                    System.out.println("Second coordinate must be over -275");
+                                    state = false;
+                                    break flag;
+                                }
+                            }
                         }
                         else
                         {

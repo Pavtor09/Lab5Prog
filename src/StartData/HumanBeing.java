@@ -41,7 +41,10 @@ public class HumanBeing {
         return this.creationDate;
     }
 
-
+    public String GetValues()
+    {
+    return id+";"+creationDate+";"+name+";"+realHero+";"+hasToothpick+";"+impactSpeed+";"+soundtrackName+";"+coordinates.GetStringCords()+";"+weaponType+";"+mood+";"+car.GetStringCar();
+    }
     public enum WeaponType {
         HAMMER,
         RIFLE,

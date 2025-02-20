@@ -28,7 +28,6 @@ public static void Add(String name,Boolean realHero, boolean toothpick, double i
         creationDate = ZonedDateTime.now();
         HumanCollection.add(new HumanBeing(name,coordinates,realHero, toothpick, impactSpeed, soundtrackName, weaponType, mood, car,Long.parseLong(strtime),creationDate));
 
-
         
 }
 public  static Iterator<HumanBeing> GetIenerator()
