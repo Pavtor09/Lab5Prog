@@ -17,7 +17,7 @@ public class UpdateCommand implements ICommand {
         if(InputChecker.ArgCheckEvSep(inptarg," ",1))
         {
             String[] Values = inptarg.split(" ");
-            if (Values.length == 11)
+            if (Values.length == 13)
             {
                 Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
                 Set<HumanBeing> TempHumanCollection = new LinkedHashSet<>();
@@ -39,6 +39,10 @@ public class UpdateCommand implements ICommand {
                 CollectionManager.CollectionReplace(TempHumanCollection);
                 System.out.println("Element has been updated");
 
+            }
+            else
+            {
+                System.out.println("Wrong number of arguments");
             }
 
 

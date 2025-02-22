@@ -9,11 +9,12 @@ public class InputChecker {
     public static boolean ArgCheck(String line,String sep, int offset)
     {
         boolean state = true;
+        String output = "";
         String[] words = line.split(sep);
         int lenth = words.length;
         if (lenth < 9)
         {
-            System.out.println("Not enough arguments");
+            output += "Not enough arguments\n";
             state = false;
 
         }
@@ -29,9 +30,9 @@ public class InputChecker {
                     {
 
                         if (words[i+offset].isEmpty())
-                        {   System.out.println("empty string "+words[i+offset]);
+                        {   output += "empty string "+words[i+offset]+"\n";
                             state = false;
-                            break flag;
+//                            break flag;
 
 
                         }
@@ -44,9 +45,9 @@ public class InputChecker {
                         if(!(words[i+offset].equals("true") || words[i+offset].equals("false")))
                         {
 
-                            System.out.println("Not true or false "+words[i+offset]);
+                            output += "Not true or false "+words[i+offset]+"\n";
                             state = false;
-                            break flag;
+//                            break flag;
                         }
                         break;
                     }
@@ -56,17 +57,17 @@ public class InputChecker {
 //
                         if(!(Numcheck(words[i+offset])))
                         {
-                            System.out.println("Not num");
-                           state = false;
-                           break flag;
+                            output +="Not num "+words[i+offset]+"\n";
+                            state = false;
+//                            break flag;
                         }
                         else
                         {
                             if (Double.parseDouble(words[i+offset]) > 646)
                             {
-                                System.out.println("Number "+words[i+offset]+" over the max value of 646");
+                                output += "Number "+words[i+offset]+" over the max value of 646"+"\n";
                                 state = false;
-                                break flag;
+//                                break flag;
                             }
                         }
                         break;
@@ -77,9 +78,9 @@ public class InputChecker {
 //
                         if (words[i+offset].isEmpty())
                         {
-                            System.out.println("Empty string");
+                            output += "Empty string"+"\n";
                             state = false;
-                            break flag;
+//                            break flag;
                         }
                         break;
                     }
@@ -90,24 +91,24 @@ public class InputChecker {
                         if (spl.length == 2){
                             if(!(Numcheck(spl[0]) && Numcheck(spl[1])))
                             {
-                                System.out.println("Coordinates must be numbers");
+                                output += "Coordinates must be numbers " + words[i+offset]+"\n";
                                 state = false;
-                                break flag;
+//                                break flag;
                             }
                             else {
                                 if (Double.parseDouble(spl[1]) <= -275)
                                 {
-                                    System.out.println("Second coordinate must be over -275");
+                                    output += "Second coordinate must be over -275"+"\n";
                                     state = false;
-                                    break flag;
+//                                    break flag;
                                 }
                             }
                         }
                         else
                         {
-                            System.out.println("Wrong number of arguments "+words[i+offset]);
+                            output += "Wrong number of arguments "+words[i+offset]+"\n";
                             state = false;
-                            break flag;
+//                            break flag;
                         }
                         break;
                     }
@@ -121,11 +122,11 @@ public class InputChecker {
                         }
                         catch (Exception e)
                         {
-                            System.out.println("There is no such weapon "+words[i+offset]);
+                            output += "There is no such weapon "+words[i+offset]+"\n";
                             Weapon = null;
                             state = false;
 
-                            break flag;
+//                            break flag;
                         }
                         break;
 
@@ -141,11 +142,11 @@ public class InputChecker {
                                 }
                                 catch (Exception e)
                                 {
-                                    System.out.println("There is no such mood "+words[i+offset]);
+                                    output += "There is no such mood "+words[i+offset]+"\n";
                                     mood = null;
                                     state = false;
 
-                                    break flag;
+//                                    break flag;
                                 }
 
                             }
@@ -158,21 +159,21 @@ public class InputChecker {
                         {
                             if (!(spl[1].equals("true") || spl[1].equals("false")))
                             {
-                                System.out.println("Not true or false " + words[i+offset]);
+                                output += "Not true or false " + words[i+offset]+"\n";
                                 state = false;
-                                break flag;
+//                                break flag;
                             }
                             if (spl[0].isEmpty())
                             {
-                                System.out.println("Name can't be empty");
+                                output += "Name can't be empty\n";
                                 state = false;
-                                break flag;
+//                                break flag;
                             }
                         }
                         else{
-                            System.out.println("Wrong number of arguments "+words[i+offset]);
+                            output += "Wrong number of arguments "+words[i+offset]+"\n";
                             state = false;
-                            break flag;
+//                            break flag;
                         }
                         break;
                     }
@@ -188,6 +189,7 @@ public class InputChecker {
 
 
         }
+        System.out.println(output);
 
 
         return state;
@@ -195,17 +197,19 @@ public class InputChecker {
     public static boolean ArgCheckEvSep(String arg, String sep, int offset)
     {
         String[] CorArgs = arg.split(sep);
-        if (CorArgs.length == 11) {
+
+        if (CorArgs.length >= 12+offset) {
             CorArgs = Arrays.copyOfRange(CorArgs, offset, CorArgs.length);
             String CorString = CorArgs[0] + ";" + CorArgs[1] + ";" + CorArgs[2] + ";" + CorArgs[3] + ";" + CorArgs[4] + ";" + CorArgs[5] + " " + CorArgs[6] + ";" + CorArgs[7] + ";" + CorArgs[8] + ";" + CorArgs[9] + " " + CorArgs[10] + ";" + CorArgs[11];
             return ArgCheck(CorString, ";", 0);
         }
         else
         {
-            System.out.println("Wrong number of arguments");
+//            System.out.println("Wrong number of arguments in update");
             return false;
         }
     }
+
     static boolean Numcheck(String str)// Метод проверяет, является ли строка числом(а так же числом с плавающей точкой)
     {
         int dotcount = 0;

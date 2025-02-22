@@ -14,23 +14,23 @@ public class InputSystem { //Класс отвечающий за ввод ко�
 
         String line = sc.nextLine();
         String[] tokens = line.split(" ");
-//        if (tokens.length > 0)
-//        {
-//
+        if (tokens.length > 0)
+        {
+
             curcommand = CommandManager.CommandMap.get(tokens[0]);
-//        }
-//        else {
-//            curcommand = null;
-//
-//        }
-//        try{
+        }
+        else {
+            curcommand = null;
+
+        }
+        try{
 
         curcommand.execute(line);
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
-//        }
+        }
+        catch (Exception e)
+        {
+            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
+        }
          if (Bflag){
              break;
          }
