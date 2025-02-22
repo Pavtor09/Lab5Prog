@@ -55,7 +55,7 @@ public class InputChecker {
                     case(3):
                     {
 //
-                        if(!(Numcheck(words[i+offset])))
+                        if(!(Numcheck(words[i+offset],true)))
                         {
                             output +="Not num "+words[i+offset]+"\n";
                             state = false;
@@ -89,9 +89,9 @@ public class InputChecker {
                         String[] spl = words[i+offset].split(" ");
 
                         if (spl.length == 2){
-                            if(!(Numcheck(spl[0]) && Numcheck(spl[1])))
+                            if(!(Numcheck(spl[0],false) && Numcheck(spl[1],true)))
                             {
-                                output += "Coordinates must be numbers " + words[i+offset]+"\n";
+                                output += "Coordinates must be numbers. First - long, second - double " + words[i+offset]+"\n";
                                 state = false;
 //                                break flag;
                             }
@@ -210,12 +210,12 @@ public class InputChecker {
         }
     }
 
-    static boolean Numcheck(String str)// Метод проверяет, является ли строка числом(а так же числом с плавающей точкой)
+    public static boolean Numcheck(String str,boolean HasDot)// Метод проверяет, является ли строка числом(а так же числом с плавающей точкой)
     {
         int dotcount = 0;
         for(int i = 0;i < str.length();i++)
         {
-            if (!(Character.isDigit(str.charAt(i)) || str.charAt(i) == '.'))
+            if (!(Character.isDigit(str.charAt(i)) || (str.charAt(i) == '.' && HasDot)))
             {
                 return false;
             }

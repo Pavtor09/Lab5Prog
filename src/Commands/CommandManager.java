@@ -13,6 +13,7 @@ public static void Add(){
     CommandMap.put("info",new InfoCommand());
     CommandMap.put("show", new ShowCommand());
     CommandMap.put("update", new UpdateCommand());
+    CommandMap.put("remove", new RemoveCommand());
 
     }
 }
