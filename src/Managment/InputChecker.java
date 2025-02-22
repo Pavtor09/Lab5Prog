@@ -2,13 +2,24 @@ package Managment;
 
 import StartData.HumanBeing;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class InputChecker {
     public static boolean ArgCheck(String line,String sep, int offset)
     {
-
+        boolean state = true;
         String[] words = line.split(sep);
         int lenth = words.length;
-        boolean state = true;
+        if (lenth < 9)
+        {
+            System.out.println("Not enough arguments");
+            state = false;
+
+        }
+        else
+        {
+
             flag:
             for (int i = 0; i < 11;i++)
             {
@@ -167,18 +178,33 @@ public class InputChecker {
                     }
 
                 }
-
-
-
-
-
-
-
-
             }
 
 
+
+
+
+
+
+
+        }
+
+
         return state;
+    }
+    public static boolean ArgCheckEvSep(String arg, String sep, int offset)
+    {
+        String[] CorArgs = arg.split(sep);
+        if (CorArgs.length == 11) {
+            CorArgs = Arrays.copyOfRange(CorArgs, offset, CorArgs.length);
+            String CorString = CorArgs[0] + ";" + CorArgs[1] + ";" + CorArgs[2] + ";" + CorArgs[3] + ";" + CorArgs[4] + ";" + CorArgs[5] + " " + CorArgs[6] + ";" + CorArgs[7] + ";" + CorArgs[8] + ";" + CorArgs[9] + " " + CorArgs[10] + ";" + CorArgs[11];
+            return ArgCheck(CorString, ";", 0);
+        }
+        else
+        {
+            System.out.println("Wrong number of arguments");
+            return false;
+        }
     }
     static boolean Numcheck(String str)// Метод проверяет, является ли строка числом(а так же числом с плавающей точкой)
     {

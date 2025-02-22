@@ -9,15 +9,14 @@ public class InfoCommand implements ICommand{
     {
         HumanBeing last = null;
         if(CollectionManager.getsize() > 0)
-        {Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
-//        while (iter.hasNext())
-//        {
+        {
+            Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
             last = iter.next();
-//        }
-
-        System.out.println("Type of collection: "+CollectionManager.getclass().toString()+" | Time of initialization "+ (last != null?last.GetTime().toString().replaceAll("\\..*","").replace("T"," "):"-")+" | Collection size: " +CollectionManager.getsize());
+            System.out.println("Type of collection: "+CollectionManager.getclass().toString()+" | Time of initialization "+ (last != null?last.GetTime().toString().replaceAll("\\..*","").replace("T"," "):"-")+" | Collection size: " +CollectionManager.getsize());
         }
-        else {
+
+        else
+        {
             System.out.println("Collection is empty");
         }
     }
