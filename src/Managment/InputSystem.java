@@ -1,5 +1,6 @@
 package Managment;
 
+import java.io.IOException;
 import java.util.Scanner;
 import Commands.CommandManager;
 import Commands.ICommand;
@@ -9,28 +10,28 @@ public class InputSystem { //Класс отвечающий за ввод ко�
     static Scanner sc = new Scanner(System.in);
     static boolean Bflag = false;
     static ICommand curcommand = null;
-    public static void Read(){
+    public static void Read() throws IOException {
      while (true){  //цикл работы программы
 
         String line = sc.nextLine();
         String[] tokens = line.split(" ");
-        if (tokens.length > 0)
-        {
-
+//        if (tokens.length > 0)
+//        {
+//
             curcommand = CommandManager.CommandMap.get(tokens[0]);
-        }
-        else {
-            curcommand = null;
+//        }
+//        else {
+//            curcommand = null;
+//
+//        }
+//        try{
 
-        }
-        try{
-
-        curcommand.execute(line);
-        }
-        catch (Exception e)
-        {
-            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
-        }
+            curcommand.execute(line);
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
+//        }
          if (Bflag){
              break;
          }
