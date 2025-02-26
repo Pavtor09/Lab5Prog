@@ -1,11 +1,12 @@
 package Commands;
+import InputManagment.IInput;
 import Managment.*;
 import StartData.HumanBeing;
 
 import java.util.Iterator;
 
 public class InfoCommand implements ICommand{
-    public void execute(String arg)
+    public void execute(String arg, IInput inpt,CommandReader caller)
     {
         HumanBeing last = null;
         if(CollectionManager.getsize() > 0)

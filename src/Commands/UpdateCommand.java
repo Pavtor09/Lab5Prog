@@ -1,6 +1,8 @@
 package Commands;
 
+import InputManagment.IInput;
 import Managment.CollectionManager;
+import Managment.CommandReader;
 import Managment.InputChecker;
 import StartData.Car;
 import StartData.Coordinates;
@@ -11,12 +13,13 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class UpdateCommand implements ICommand {
-    public void execute(String inptarg)
+    public void execute(String inptarg, IInput inpt, CommandReader caller)
     {
 
         if(InputChecker.ArgCheckEvSep(inptarg," ",1))
         {
             String[] Values = inptarg.split(" ");
+
             if (Values.length == 13)
             {
                 Iterator<HumanBeing> iter = CollectionManager.GetIenerator();

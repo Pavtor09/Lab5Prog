@@ -1,33 +1,36 @@
 package InputManagment;
-import StartData.Car;
-import StartData.Coordinates;
-import StartData.HumanBeing;
+
+import Managment.InputSystem;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.ZonedDateTime;
 
-public class Reader implements IReader{
+public class Reader {
+    public String Read(String path) throws IOException {
+        FileInputStream geek = null;
+        String output = "";
+        InputStreamReader InStrm = null;
+        boolean opened = false;
+        try {
+            geek = new FileInputStream(path);
+            InStrm = new InputStreamReader(geek);
 
-    public String Read(String file) throws IOException {
-
-        FileInputStream fis = new FileInputStream(file);
-
-        InputStreamReader inpt = new InputStreamReader(fis);
-//        CollectionManager.HumanCollection.clear();
-
-        String line = "";
-
-        int nxt = inpt.read();
-        String words = "";
-        int sepcount = 0;
-        while (nxt != -1) {
-
-
+            opened = true;
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("NO Such File Exists");
         }
+        if (opened)
+        {
+            int cur = 0;
+            while(cur != -1)
+            {
+                cur = InStrm.read();
+                output += (cur!= -1)&&((char)cur != '\r') ? (char)cur:"";
 
-        return "";
+            }
+        }
+    return output;
     }
 }

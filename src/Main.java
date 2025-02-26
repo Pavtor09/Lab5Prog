@@ -8,6 +8,7 @@ public class Main {
 
 //        System.out.println(fileName);
     CommandManager.Add();
-    InputSystem.Read();
+    InputSystem runner = new InputSystem();
+    runner.Read();
     }
 }

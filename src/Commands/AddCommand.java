@@ -1,4 +1,5 @@
 package Commands;
+import InputManagment.IInput;
 import  Managment.*;
 import StartData.Car;
 import StartData.Coordinates;
@@ -17,35 +18,48 @@ public class AddCommand implements ICommand{
     HumanBeing.WeaponType weaponType;
     HumanBeing.Mood mood;
     Car car;
-
-    public void execute(String arg)
+    IInput inpt = null;
+    public void execute(String arg,IInput inpt,CommandReader caller)
     {
+        this.inpt = inpt;
 //        System.out.println("Enter parameters: String name, Boolean realHero, boolean HasToothPick, Double ImpactSeed(max 646), String Soundtrack");
-        Scanner sc = new Scanner(System.in);
-          String line = arg;
-            System.out.println("Enter coordinates(First number must be long, second - double)");
-            line = sc.nextLine();
-            arg = arg.replaceAll(" ",";");
-            arg += ";"+line;
+//        Scanner sc = new Scanner(System.in);
+        System.out.println(arg);
 
-            System.out.println("Enter weapon type");
-            HumanBeing.WeaponType.PrintWeapons();
-            line = sc.nextLine();
-            arg += ";"+line;
+        String line = arg.replaceAll("\r","");
+        Println("Enter coordinates(First number must be long, second - double)");
+        line = inpt.NextLine();
 
-            System.out.println("Enter Mood");
-            HumanBeing.Mood.PrintMood();
-            line = sc.nextLine();
-            arg += ";"+line;
 
-            System.out.println("Enter car(String name Boolean cool)");
-            line = sc.nextLine();
-            arg+= ";"+line;
+        arg = arg.replaceAll(" ",";");
+        arg = arg.replaceAll("\r","");
+        arg += ";"+line.replaceAll("\r","");
+        System.out.println(arg);
+
+        Println("Enter weapon type");
+        HumanBeing.WeaponType.PrintWeapons();
+        line = inpt.NextLine();
+        arg += ";"+line.replaceAll("\r","");
+        System.out.println(arg);
+
+
+        Println("Enter Mood");
+        HumanBeing.Mood.PrintMood();
+        line = inpt.NextLine();
+        arg += ";"+line.replaceAll("\r","");
+        System.out.println(arg);
+
+
+        Println("Enter car(String name Boolean cool)");
+        line = inpt.NextLine();
+        arg+= ";"+line.replaceAll("\r","");
+        System.out.println(arg);
+
 
 
         if (InputChecker.ArgCheck(arg,";",1))
         {
-
+            arg = arg.replaceAll("; ",";").replaceAll(" ;","").replaceAll(" *$","");
             Convert(arg);
             CollectionManager.Add(name,realHero,hasToothPick,impactSeed,soundtrack,cords,weaponType,mood,car);
         }
@@ -74,5 +88,12 @@ public class AddCommand implements ICommand{
         cur = Arguments[9].split(" ");
         this.car = new Car(cur[0],cur[1].equals("true"));
 
+    }
+    private void Println(String outstr)
+    {
+        if (inpt.RequiresOutput())
+        {
+            System.out.println(outstr);
+        }
     }
 }

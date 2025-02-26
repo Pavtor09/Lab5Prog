@@ -19,15 +19,26 @@ public class Writer implements IOutput{
 //    }
 
     public void WriteFromIterator(Iterator<HumanBeing> iter,String path) throws IOException {
-        OutputStream outputStream = new FileOutputStream(path);
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-        while (iter.hasNext())
+        OutputStream outputStream = null;
+        try
         {
-            HumanBeing cur = iter.next();
-            outputStreamWriter.write(cur.GetValues()+"\n");
+        outputStream = new FileOutputStream(path);
         }
-        outputStreamWriter.close();
-        System.out.println("Collection has been saved");
+        catch (Exception e)
+        {
+            System.out.println("File not found");
+        }
+        if (outputStream != null)
+        {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+            while (iter.hasNext())
+            {
+                HumanBeing cur = iter.next();
+                outputStreamWriter.write(cur.GetValues()+"\n");
+            }
+            outputStreamWriter.close();
+            System.out.println("Collection has been saved");
+        }
     }
     public void WriteFromIterator(Iterator<HumanBeing> iter) throws IOException {
         String defFileName = System.getenv("fileName");

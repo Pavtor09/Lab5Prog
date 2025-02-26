@@ -1,8 +1,25 @@
 package InputManagment;
 
-public class ConsoleInput implements IReader{
-    public String Read(String str){
+import java.util.Scanner;
 
-        return "";
+public class ConsoleInput implements IInput{
+    Scanner sc = null;
+    private boolean reqOut = true;
+    public ConsoleInput()
+    {
+        sc = new Scanner(System.in);
     }
+    public String NextLine()
+    {
+        return sc.nextLine();
+    }
+    public boolean HasNext()
+    {
+     return sc.hasNext();
+    }
+    public boolean RequiresOutput()
+    {
+        return reqOut;
+    }
+
 }

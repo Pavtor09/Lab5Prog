@@ -10,6 +10,10 @@ public class InputChecker {
     {
         boolean state = true;
         String output = "";
+        line = line.replaceAll(" *;",";");
+        line = line.replaceAll("; *",";");
+        line = line.replaceAll(" *$","");
+//        System.out.println(line);
         String[] words = line.split(sep);
         int lenth = words.length;
         if (lenth < 9)
@@ -201,6 +205,7 @@ public class InputChecker {
         if (CorArgs.length >= 12+offset) {
             CorArgs = Arrays.copyOfRange(CorArgs, offset, CorArgs.length);
             String CorString = CorArgs[0] + ";" + CorArgs[1] + ";" + CorArgs[2] + ";" + CorArgs[3] + ";" + CorArgs[4] + ";" + CorArgs[5] + " " + CorArgs[6] + ";" + CorArgs[7] + ";" + CorArgs[8] + ";" + CorArgs[9] + " " + CorArgs[10] + ";" + CorArgs[11];
+            System.out.println(CorString);
             return ArgCheck(CorString, ";", 0);
         }
         else

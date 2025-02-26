@@ -1,13 +1,15 @@
 package Commands;
 
+import InputManagment.IInput;
 import Managment.CollectionManager;
+import Managment.CommandReader;
 import StartData.HumanBeing;
 
 import java.util.Iterator;
 
 public class ShowCommand implements ICommand{
 
-    public void execute(String arg)
+    public void execute(String arg, IInput inpt, CommandReader caller)
     {
         if(CollectionManager.getsize() > 0)
         {

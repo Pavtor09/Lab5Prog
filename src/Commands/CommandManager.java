@@ -16,6 +16,7 @@ public static void Add(){
     CommandMap.put("remove", new RemoveCommand());
     CommandMap.put("clear", new ClearCommand());
     CommandMap.put("save",new SaveCommand());
+    CommandMap.put("execute",new ExecuteCommand());
     }
 }
 
