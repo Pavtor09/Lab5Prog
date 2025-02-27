@@ -24,7 +24,7 @@ public class AddCommand implements ICommand{
         this.inpt = inpt;
 //        System.out.println("Enter parameters: String name, Boolean realHero, boolean HasToothPick, Double ImpactSeed(max 646), String Soundtrack");
 //        Scanner sc = new Scanner(System.in);
-        System.out.println(arg);
+//        System.out.println(arg);
 
         String line = arg.replaceAll("\r","");
         Println("Enter coordinates(First number must be long, second - double)");
@@ -34,26 +34,26 @@ public class AddCommand implements ICommand{
         arg = arg.replaceAll(" ",";");
         arg = arg.replaceAll("\r","");
         arg += ";"+line.replaceAll("\r","");
-        System.out.println(arg);
+//        System.out.println(arg);
 
         Println("Enter weapon type");
-        HumanBeing.WeaponType.PrintWeapons();
+        Println(HumanBeing.WeaponType.PrintWeapons());
         line = inpt.NextLine();
         arg += ";"+line.replaceAll("\r","");
-        System.out.println(arg);
+//        System.out.println(arg);
 
 
         Println("Enter Mood");
-        HumanBeing.Mood.PrintMood();
+        Println(HumanBeing.Mood.PrintMood());
         line = inpt.NextLine();
         arg += ";"+line.replaceAll("\r","");
-        System.out.println(arg);
+//        System.out.println(arg);
 
 
         Println("Enter car(String name Boolean cool)");
         line = inpt.NextLine();
         arg+= ";"+line.replaceAll("\r","");
-        System.out.println(arg);
+//        System.out.println(arg);
 
 
 

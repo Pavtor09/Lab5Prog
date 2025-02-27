@@ -53,21 +53,22 @@ public class HumanBeing {
         HAMMER,
         RIFLE,
         KNIFE;
-        public static void PrintWeapons(){
-            System.out.println(WeaponType.HAMMER.toString());
-            System.out.println(WeaponType.RIFLE.toString());
-            System.out.println(WeaponType.KNIFE.toString());
+        public static String PrintWeapons()
+        {
+            return WeaponType.HAMMER.toString()+"\n"+WeaponType.RIFLE.toString()+"\n"+WeaponType.KNIFE.toString();
         }
     }
     public enum Mood {
         LONGING,
         APATHY,
         CALM;
-        public static void PrintMood()
+        public static String PrintMood()
         {
-            System.out.println(LONGING.toString());
-            System.out.println(APATHY.toString());
-            System.out.println(CALM.toString());
+            return LONGING.toString()+"\n"+APATHY.toString()+"\n"+CALM.toString();
         }
+    }
+    public void SetMood(Mood M)
+    {
+        this.mood = M;
     }
 }

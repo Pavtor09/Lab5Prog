@@ -2,6 +2,8 @@ package Managment;
 
 import StartData.HumanBeing;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,7 +28,7 @@ public class InputChecker {
         {
 
             flag:
-            for (int i = 0; i < 11;i++)
+            for (int i = 0; i < lenth-1;i++)
             {
                 switch (i)
                 {
@@ -178,6 +180,30 @@ public class InputChecker {
                             output += "Wrong number of arguments "+words[i+offset]+"\n";
                             state = false;
 //                            break flag;
+                        }
+                        break;
+                    }
+                    case(9):
+                    {
+                        try{
+                            Long.parseLong(words[i+offset]);
+                        }
+                        catch (Exception e)
+                        {
+                            output += "Id must be Long";
+                            state = false;
+                        }
+                        break;
+                    }
+                    case (10):
+                    {
+                        try {
+                            LocalDateTime.parse(words[i + offset]);
+                        }
+                        catch (Exception e)
+                        {
+                            output += "Time is wrong";
+                            state = false;
                         }
                         break;
                     }
