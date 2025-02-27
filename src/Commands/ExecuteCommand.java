@@ -34,6 +34,7 @@ public class ExecuteCommand implements ICommand{
         {
             System.out.println("Recursion break");
         }
+        caller.HistoryAdd("execute");
 
     }
     public String describe()

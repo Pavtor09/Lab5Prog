@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class CommandReader {
     public ArrayList<String> recursion = new ArrayList<String>();
     public IInput inptobj = new ConsoleInput();
+    public ArrayList<String> history = new ArrayList<String>();
     public void run(String line) throws IOException {
         ICommand curcommand = null;
         String[] tokens = line.split(" ");
@@ -31,5 +32,13 @@ public class CommandReader {
             System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
         }
 
+    }
+    public void HistoryAdd(String in)
+    {
+        history.add(in);
+        if (history.size() > 9)
+        {
+            history.remove(0);
+        }
     }
 }

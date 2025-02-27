@@ -219,19 +219,24 @@ public class InputChecker {
 
 
         }
-        System.out.println(output);
+//        System.out.println(output);
 
 
         return state;
     }
-    public static boolean ArgCheckEvSep(String arg, String sep, int offset)
+    public static boolean ArgCheckEvSep(String arg, String sep, int offset,int numOfArgs)
     {
         String[] CorArgs = arg.split(sep);
 
-        if (CorArgs.length >= 12+offset) {
+        if (CorArgs.length >= 11+offset) {
             CorArgs = Arrays.copyOfRange(CorArgs, offset, CorArgs.length);
-            String CorString = CorArgs[0] + ";" + CorArgs[1] + ";" + CorArgs[2] + ";" + CorArgs[3] + ";" + CorArgs[4] + ";" + CorArgs[5] + " " + CorArgs[6] + ";" + CorArgs[7] + ";" + CorArgs[8] + ";" + CorArgs[9] + " " + CorArgs[10] + ";" + CorArgs[11];
-            System.out.println(CorString);
+            String CorString = CorArgs[0] + ";" + CorArgs[1] + ";" + CorArgs[2] + ";" + CorArgs[3] + ";" + CorArgs[4] + ";" + CorArgs[5] + " " + CorArgs[6] + ";" + CorArgs[7] + ";" + CorArgs[8] + ";" + CorArgs[9] + " " + CorArgs[10] + (CorArgs.length >= 12 ?(";" + CorArgs[11]):"");
+//            String CorString = "";
+//            for(int i = 0;i < numOfArgs-offset;i++)
+//            {
+//                CorString += CorArgs[i]+ (i == numOfArgs-1?"":";");
+//            }
+//            System.out.println(CorString);
             return ArgCheck(CorString, ";", 0);
         }
         else

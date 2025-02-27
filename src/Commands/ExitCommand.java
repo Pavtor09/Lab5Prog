@@ -5,6 +5,7 @@ public class ExitCommand implements  ICommand{
     public void execute(String arg, IInput inpt,CommandReader caller)
     {
         InputSystem.BreakFlag();
+
     }
     public String describe()
     {

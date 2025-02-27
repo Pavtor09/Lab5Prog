@@ -12,6 +12,7 @@ public class HelpCommand implements ICommand{
             String value = CommandManager.CommandMap.get(name).describe();
             System.out.println('"'+name+'"' + " " + value);
         }
+        caller.HistoryAdd("help");
     }
 
     public String describe()

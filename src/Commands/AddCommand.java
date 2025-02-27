@@ -63,6 +63,7 @@ public class AddCommand implements ICommand{
             Convert(arg);
             CollectionManager.Add(name,realHero,hasToothPick,impactSeed,soundtrack,cords,weaponType,mood,car);
         }
+        caller.HistoryAdd("add");
     }
 
     @Override

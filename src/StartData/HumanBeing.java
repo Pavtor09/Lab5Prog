@@ -49,6 +49,10 @@ public class HumanBeing {
     {
         return id;
     }
+    public double GetImpactSeed()
+    {
+        return impactSpeed;
+    }
     public enum WeaponType {
         HAMMER,
         RIFLE,

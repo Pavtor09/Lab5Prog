@@ -16,7 +16,7 @@ public class UpdateCommand implements ICommand {
     public void execute(String inptarg, IInput inpt, CommandReader caller)
     {
 
-        if(InputChecker.ArgCheckEvSep(inptarg," ",1))
+        if(InputChecker.ArgCheckEvSep(inptarg," ",1,13))
         {
             String[] Values = inptarg.split(" ");
 
@@ -54,6 +54,7 @@ public class UpdateCommand implements ICommand {
         {
             System.out.println("Wrong arguments");
         }
+        caller.HistoryAdd("update");
     }
     public String describe()
     {

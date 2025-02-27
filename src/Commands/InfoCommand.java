@@ -20,6 +20,7 @@ public class InfoCommand implements ICommand{
         {
             System.out.println("Collection is empty");
         }
+        caller.HistoryAdd("info");
     }
 
     public String describe()

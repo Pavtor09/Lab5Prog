@@ -14,6 +14,7 @@ public class ClearCommand implements ICommand{
         Set<HumanBeing> ZeroHumanCollection = new LinkedHashSet<>();
         CollectionManager.CollectionReplace(ZeroHumanCollection);
         System.out.println("Collection has been cleared");
+        caller.HistoryAdd("clear");
     }
     public String describe()
     {

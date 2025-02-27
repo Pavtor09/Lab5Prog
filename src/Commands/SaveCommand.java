@@ -14,6 +14,7 @@ public class SaveCommand implements ICommand {
         Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
         Writer out = new Writer();
         out.WriteFromIterator(iter,"C:\\Users\\t3327\\OneDrive\\Рабочий стол\\Collection.csv");
+        caller.HistoryAdd("save");
     }
     public String describe()
     {

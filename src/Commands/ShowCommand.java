@@ -25,7 +25,7 @@ public class ShowCommand implements ICommand{
         {
             System.out.println("Collection is empty");
         }
-
+        caller.HistoryAdd("show");
     }
     public String describe()
     {
