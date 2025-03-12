@@ -17,20 +17,20 @@ public class CommandReader {
         String[] tokens = line.split(" ");
 
 
-        if (tokens.length > 0)
-        {
+//        if (tokens.length > 0)
+//        {
 
             curcommand = CommandManager.CommandMap.get(tokens[0]);
 
-        }
-        try{
+//        }
+//        try{
 
             curcommand.execute(line,inptobj,this);
-        }
-        catch (Exception e)
-        {
-            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
-        }
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
+//        }
 
     }
     public void HistoryAdd(String in)

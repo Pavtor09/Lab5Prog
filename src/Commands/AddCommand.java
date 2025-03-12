@@ -1,10 +1,12 @@
 package Commands;
 import InputManagment.IInput;
+import InputManagment.InputRequest;
 import  Managment.*;
 import StartData.Car;
 import StartData.Coordinates;
 import StartData.HumanBeing;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
@@ -21,48 +23,28 @@ public class AddCommand implements ICommand{
     IInput inpt = null;
     public void execute(String arg,IInput inpt,CommandReader caller)
     {
+        OutputManagment output = new OutputManagment(inpt);
+        InputRequest request = new InputRequest();
+        ArgumentChecker checker = new ArgumentChecker();
         this.inpt = inpt;
-//        System.out.println("Enter parameters: String name, Boolean realHero, boolean HasToothPick, Double ImpactSeed(max 646), String Soundtrack");
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println(arg);
+        String[] curCheck = arg.split(" ");
+        String resStr = "";
 
-        String line = arg.replaceAll("\r","");
-        Println("Enter coordinates(First number must be long, second - double)");
-        line = inpt.NextLine();
+        resStr +=  request.CheckRequest(inpt, Arrays.copyOfRange(curCheck,1,curCheck.length),new String[]{"Str","Bool","Bool","Impact","Str"},new String[]{"name can't be null","RealHero: Boolean can be true or false","HasToothpick: Boolean can be true or false","ImpactSeed must be double and less than 647","Soundtrack name can't be null"},5);
 
+        String line = "";
+        resStr += ";"+request.Request(inpt,"Enter coordinates(First number must be long, second - double)",new String[]{"Long","DoubleCords"}, new String[]{"First coordinate must be long","Second coordinate must be double and more than -275"},2," ",0);
 
-        arg = arg.replaceAll(" ",";");
-        arg = arg.replaceAll("\r","");
-        arg += ";"+line.replaceAll("\r","");
-//        System.out.println(arg);
+        resStr += ";"+request.Request(inpt,"Enter weaponType\n"+HumanBeing.WeaponType.PrintWeapons(),new String[]{"Weapon"},new String[]{"Type of weapon is worng\n"+HumanBeing.WeaponType.PrintWeapons()},1," ",0);
 
-        Println("Enter weapon type");
-        Println(HumanBeing.WeaponType.PrintWeapons());
-        line = inpt.NextLine();
-        arg += ";"+line.replaceAll("\r","");
-//        System.out.println(arg);
+        resStr += ";"+request.Request(inpt,"Enter Mood\n"+HumanBeing.Mood.PrintMood(),new String[]{"Mood"},new String[]{"There's no such mood"},1," ",0);
 
+        resStr += ";"+request.Request(inpt,"Enter Car first - string, second - bool",new String[] {"Str","Bool"},new String[]{"Car name:String can't be empty","Cool: Bool can be true or false"},2," ",0);
 
-        Println("Enter Mood");
-        Println(HumanBeing.Mood.PrintMood());
-        line = inpt.NextLine();
-        arg += ";"+line.replaceAll("\r","");
-//        System.out.println(arg);
+        System.out.println(resStr);
+        ParceToCollection parser = new ParceToCollection();
+        parser.ParceAndAdd(resStr);
 
-
-        Println("Enter car(String name Boolean cool)");
-        line = inpt.NextLine();
-        arg+= ";"+line.replaceAll("\r","");
-//        System.out.println(arg);
-
-
-
-        if (InputChecker.ArgCheck(arg,";",1))
-        {
-            arg = arg.replaceAll("; ",";").replaceAll(" ;","").replaceAll(" *$","");
-            Convert(arg);
-            CollectionManager.Add(name,realHero,hasToothPick,impactSeed,soundtrack,cords,weaponType,mood,car);
-        }
         caller.HistoryAdd("add");
     }
 
@@ -70,31 +52,5 @@ public class AddCommand implements ICommand{
     public String describe() {
         return "Adds new element to HumanBeing LinkedHashSet. Input parameters: String name,Coordinates coordinates(Enter x=... y=...), Boolean realHero, boolean HasToothPick,Double ImpacktSeed(max 646), String Soundtrack, WeaponType weaponType, Mood mood(field can be null, write 0 or null), ";
     }
-    private void Convert(String arg)
-    {
-        String[] Arguments = arg.split(";");
 
-        this.name = Arguments[1];
-        this.realHero = Arguments[2].equals("true");
-        this.hasToothPick = Arguments[3].equals("true");
-        this.impactSeed = Double.parseDouble(Arguments[4]);
-        this.soundtrack = Arguments[5];
-        String[] cur = Arguments[6].split(" ");
-        this.cords = new Coordinates(Long.parseLong(cur[0]),Double.parseDouble(cur[1]));
-        this.weaponType = HumanBeing.WeaponType.valueOf(Arguments[7]);
-        if (!Arguments[8].isEmpty())
-        {
-            this.mood = HumanBeing.Mood.valueOf(Arguments[8]);
-        }
-        cur = Arguments[9].split(" ");
-        this.car = new Car(cur[0],cur[1].equals("true"));
-
-    }
-    private void Println(String outstr)
-    {
-        if (inpt.RequiresOutput())
-        {
-            System.out.println(outstr);
-        }
-    }
 }

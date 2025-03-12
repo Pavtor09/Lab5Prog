@@ -11,7 +11,7 @@ public class ConsoleInput implements IInput{
     }
     public String NextLine()
     {
-        return sc.nextLine();
+        return sc.nextLine().replaceAll("\n","").replaceAll("\t","");
     }
     public boolean HasNext()
     {
