@@ -18,6 +18,8 @@ public static void Add(){
     CommandMap.put("save",new SaveCommand());
     CommandMap.put("execute",new ExecuteCommand());
     CommandMap.put("add_if_max",new AddIfMaxCommand());
+    CommandMap.put("remove_lower",new RemoveLowerCommand());
+    CommandMap.put("history",new HistoryCommand());
     }
 }
 

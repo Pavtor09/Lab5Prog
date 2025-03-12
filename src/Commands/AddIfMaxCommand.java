@@ -1,46 +1,62 @@
 package Commands;
 
 import InputManagment.IInput;
-import Managment.CollectionManager;
-import Managment.CommandReader;
-import Managment.InputChecker;
+import InputManagment.InputRequest;
+import Managment.*;
 import StartData.Car;
 import StartData.Coordinates;
 import StartData.HumanBeing;
 
 import javax.print.DocFlavor;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class AddIfMaxCommand implements ICommand{
 
     @Override
     public void execute(String arg, IInput inptm, CommandReader caller) throws IOException {
-        String[] Values = arg.split(" ");
+
         boolean state = true;
         Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
 //        System.out.println(arg);
-        if (InputChecker.ArgCheckEvSep(arg," ",1,12))
+        OutputManagment output = new OutputManagment(inptm);
+        InputRequest request = new InputRequest();
+        String[] curCheck = arg.split(" ");
+        if (curCheck.length == 12)
         {
+            arg =  request.CheckRequest(inptm, Arrays.copyOfRange(curCheck,1,curCheck.length),new String[]{"Str","Bool","Bool","Impact","Str","Long","DoubleCords","Weapon","Mood","Str","Bool"},new String[]{"name can't be null","RealHero: Boolean can be true or false","HasToothpick: Boolean can be true or false","ImpactSeed must be double and less than 647","Soundtrack name can't be null","Coordinates first: must be Long", "Coordinates second: must be double and above -275","theres no such weapon\n"+ HumanBeing.WeaponType.PrintWeapons(),"there's no such Mood\n"+ HumanBeing.Mood.PrintMood(),"Car first: name can't be null","Car second: bool can only be true or false"},11);
+        }
+        else
+        {
+
+            arg = request.CheckRequest(inptm, Arrays.copyOfRange(curCheck,1,curCheck.length),new String[]{"Str","Bool","Bool","Impact","Str","Long","DoubleCords","Weapon","Str","Bool"},new String[]{"name can't be null","RealHero: Boolean can be true or false","HasToothpick: Boolean can be true or false","ImpactSeed must be double and less than 647","Soundtrack name can't be null","Coordinates first: must be Long", "Coordinates second: must be double and above -275","theres no such weapon\n"+ HumanBeing.WeaponType.PrintWeapons(),"Car first: name can't be null","Car second: bool can only be true or false"},10);
+        }
+        if (arg != null)
+        {String[] Values = arg.split(";");
             while(iter.hasNext())
             {
                 HumanBeing CurH = iter.next();
-                if (CurH.GetImpactSeed() >= Double.parseDouble(Values[4]))
+                if (CurH.GetImpactSeed() >= Double.parseDouble(Values[3]))
                 {
                     state = false;
+                    break;
                 }
             }
             if (state)
             {
-                CollectionManager.Add(Values[1], Values[2].equals("true"), Values[3].equals("true"), Double.parseDouble(Values[4]), Values[5], new Coordinates(Long.parseLong(Values[6]), Double.parseDouble(Values[7])), HumanBeing.WeaponType.valueOf(Values[8]), Values[9].isEmpty() ? null : HumanBeing.Mood.valueOf(Values[9]), new Car(Values[10], Values[11].equals("true")));
+                ParceToCollection parser = new ParceToCollection();
+                parser.ParceAndAdd(arg);
             }
             else{
-                System.out.println(Values[4]+" is too small");
+                System.out.println(Values[3]+" is too small");
             }
         }
-        else {
-            System.out.println("WRONG");
+        else{
+            output.Println("add if command finished");
         }
+
+
         caller.HistoryAdd("add_if_max");
     }
 

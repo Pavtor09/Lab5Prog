@@ -110,6 +110,24 @@ public class ArgumentChecker {
                     }
                 }
                 break;
+            case ("Id"):
+                try{
+                    Long.parseLong(arg);
+                }
+                catch (Exception e)
+                {
+
+                    arg = req.Request(inpt,errorMessage,new String[] {mod},new String[]{errorMessage},1," ",Invokes+1);
+                }
+                if (arg != null)
+                {
+                    Long temp = Long.parseLong(arg);
+                    if (temp <= 0)
+                    {
+                        arg = req.Request(inpt,errorMessage,new String[] {mod},new String[]{errorMessage},1," ",Invokes+1);
+                    }
+                }
+                break;
 
 
 

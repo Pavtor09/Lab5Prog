@@ -15,8 +15,16 @@ public class ParceToCollection {
         String soundtrackName = Values[4];
         Coordinates cords =  new Coordinates(Long.parseLong(Values[5]),Double.parseDouble(Values[6]));
         HumanBeing.WeaponType weaponType = HumanBeing.WeaponType.valueOf(Values[7]);
-        HumanBeing.Mood mood = HumanBeing.Mood.valueOf(Values[8]);
-        Car car = new Car(Values[9],Values[10].equals("true"));
-        CollectionManager.Add(name,realHero,hasToothpick,impactSeed,soundtrackName,cords,weaponType,mood,car);
+        if (Values.length == 11)
+        {
+            HumanBeing.Mood mood = Values[8].isEmpty() ? null : HumanBeing.Mood.valueOf(Values[8]);
+            Car car = new Car(Values[9],Values[10].equals("true"));
+            CollectionManager.Add(name,realHero,hasToothpick,impactSeed,soundtrackName,cords,weaponType,mood,car);
+        }
+        else {
+            HumanBeing.Mood mood = null;
+            Car car = new Car(Values[8],Values[9].equals("true"));
+            CollectionManager.Add(name,realHero,hasToothpick,impactSeed,soundtrackName,cords,weaponType,mood,car);
+        }
     }
 }

@@ -1,37 +1,58 @@
 package Commands;
 
 import InputManagment.IInput;
+import InputManagment.InputRequest;
 import Managment.CollectionManager;
 import Managment.CommandReader;
 import Managment.InputChecker;
+import Managment.OutputManagment;
 import StartData.Car;
 import StartData.Coordinates;
 import StartData.HumanBeing;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class UpdateCommand implements ICommand {
-    public void execute(String inptarg, IInput inpt, CommandReader caller)
+    public void execute(String arg, IInput inpt, CommandReader caller)
     {
-
-        if(InputChecker.ArgCheckEvSep(inptarg," ",1,13))
+        OutputManagment output = new OutputManagment(inpt);
+        String[] curCheck = arg.split(" ");
+        InputRequest request = new InputRequest();
+        if (curCheck.length == 13)
         {
-            String[] Values = inptarg.split(" ");
+            arg =  request.CheckRequest(inpt, Arrays.copyOfRange(curCheck,1,curCheck.length),new String[]{"Str","Bool","Bool","Impact","Str","Long","DoubleCords","Weapon","Mood","Str","Bool","Id"},new String[]{"name can't be null","RealHero: Boolean can be true or false","HasToothpick: Boolean can be true or false","ImpactSeed must be double and less than 647","Soundtrack name can't be null","Coordinates first: must be Long", "Coordinates second: must be double and above -275","theres no such weapon\n"+ HumanBeing.WeaponType.PrintWeapons(),"there's no such Mood\n"+ HumanBeing.Mood.PrintMood(),"Car first: name can't be null","Car second: bool can only be true or false","Id must be Long and more than 0"},12);
+        }
+        else
+        {
+            arg = request.CheckRequest(inpt, Arrays.copyOfRange(curCheck,1,curCheck.length),new String[]{"Str","Bool","Bool","Impact","Str","Long","DoubleCords","Weapon","Str","Bool","Id"},new String[]{"name can't be null","RealHero: Boolean can be true or false","HasToothpick: Boolean can be true or false","ImpactSeed must be double and less than 647","Soundtrack name can't be null","Coordinates first: must be Long", "Coordinates second: must be double and above -275","theres no such weapon\n"+ HumanBeing.WeaponType.PrintWeapons(),"Car first: name can't be null","Car second: bool can only be true or false","Id must be Long and more than 0"},11);
 
-            if (Values.length == 13)
-            {
+        }
+        if(arg != null)
+        {
+            String[] Values = arg.split(";");
+
                 Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
                 Set<HumanBeing> TempHumanCollection = new LinkedHashSet<>();
+                boolean updated = false;
                 while (iter.hasNext())
                 {
                     HumanBeing cur = iter.next();
                     String[] args = cur.GetValues().split(";");
 
-                    if (args[9].equals(Values[12]))
+                    if (args[9].equals(Values[Values.length-1]))
                     {
-                        TempHumanCollection.add(new HumanBeing(Values[1], Values[2].equals("true"), Values[3].equals("true"), Double.parseDouble(Values[4]), Values[5], new Coordinates(Long.parseLong(Values[6]), Double.parseDouble(Values[7])), HumanBeing.WeaponType.valueOf(Values[8]), Values[9].isEmpty() ? null : HumanBeing.Mood.valueOf(Values[9]), new Car(Values[10], Values[11].equals("true")), Long.parseLong(Values[12]), cur.GetTime()));
+                        if (Values.length == 12)
+                        {
+                            TempHumanCollection.add(new HumanBeing(Values[0], Values[1].equals("true"), Values[2].equals("true"), Double.parseDouble(Values[3]), Values[4], new Coordinates(Long.parseLong(Values[5]), Double.parseDouble(Values[6])), HumanBeing.WeaponType.valueOf(Values[7]), Values[8].isEmpty() ? null : HumanBeing.Mood.valueOf(Values[8]), new Car(Values[9], Values[10].equals("true")), Long.parseLong(Values[11]), cur.GetTime()));
+                        }
+                        else {
+                            TempHumanCollection.add(new HumanBeing(Values[0], Values[1].equals("true"), Values[2].equals("true"), Double.parseDouble(Values[3]), Values[4], new Coordinates(Long.parseLong(Values[5]), Double.parseDouble(Values[6])), HumanBeing.WeaponType.valueOf(Values[7]), null, new Car(Values[8], Values[9].equals("true")), Long.parseLong(Values[10]), cur.GetTime()));
+
+                        }
+                        updated = true;
                     }
                     else
                     {
@@ -40,19 +61,22 @@ public class UpdateCommand implements ICommand {
 
                 }
                 CollectionManager.CollectionReplace(TempHumanCollection);
-                System.out.println("Element has been updated");
+                if (updated)
+                {
+                    output.Println("Element has been updated");
+                }
+                else {
+                    output.Println("there's no element with such id");
+                }
 
-            }
-            else
-            {
-                System.out.println("Wrong number of arguments");
-            }
+
+
 
 
         }
         else
         {
-            System.out.println("Wrong arguments");
+            output.Println("Update command finished");
         }
         caller.HistoryAdd("update");
     }
