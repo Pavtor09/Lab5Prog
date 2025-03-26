@@ -9,6 +9,6 @@ public class ExitCommand implements  ICommand{
     }
     public String describe()
     {
-        return "Exits the programm";
+        return "Exits the program";
     }
 }

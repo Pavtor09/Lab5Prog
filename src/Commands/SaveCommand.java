@@ -13,7 +13,7 @@ public class SaveCommand implements ICommand {
     public void execute(String arg, IInput inpt, CommandReader caller) throws IOException {
         Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
         Writer out = new Writer();
-        out.WriteFromIterator(iter,"C:\\Users\\t3327\\OneDrive\\Рабочий стол\\Collection.csv");
+        out.WriteFromIterator(iter,System.getenv("fileName"));
         caller.HistoryAdd("save");
     }
     public String describe()

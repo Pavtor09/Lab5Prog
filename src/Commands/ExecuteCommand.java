@@ -39,7 +39,7 @@ public class ExecuteCommand implements ICommand{
     }
     public String describe()
     {
-        return "executes commands from file";
+        return "executes commands from file, specify the path to the file in the same line as execute";
     }
 
 }

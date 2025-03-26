@@ -13,6 +13,6 @@ public class HistoryCommand implements ICommand{
     }
 
     public String describe() {
-        return "";
+        return "prints 9 last commands without arguments";
     }
 }

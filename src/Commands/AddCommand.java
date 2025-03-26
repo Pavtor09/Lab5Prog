@@ -35,26 +35,26 @@ public class AddCommand implements ICommand{
         if (cur != null)
         {
             resStr += cur;
-            cur = ";"+request.Request(inpt,"Enter coordinates(First number must be long, second - double)",new String[]{"Long","DoubleCords"}, new String[]{"First coordinate must be long","Second coordinate must be double and more than -275"},2," ",0);
-            resStr += cur;
+            cur = request.Request(inpt,"Enter coordinates(First number must be long, second - double)",new String[]{"Long","DoubleCords"}, new String[]{"First coordinate must be long","Second coordinate must be double and more than -275"},2," ",0);
+            resStr += ';'+cur;
         }
         if (cur != null)
         {
-            cur = ";"+request.Request(inpt,"Enter weaponType\n"+HumanBeing.WeaponType.PrintWeapons(),new String[]{"Weapon"},new String[]{"Type of weapon is worng\n"+HumanBeing.WeaponType.PrintWeapons()},1," ",0);
-            resStr += cur;
+            cur = request.Request(inpt,"Enter weaponType\n"+HumanBeing.WeaponType.PrintWeapons(),new String[]{"Weapon"},new String[]{"Type of weapon is worng\n"+HumanBeing.WeaponType.PrintWeapons()},1," ",0);
+            resStr += ";"+cur;
         }
         if (cur != null)
         {
-            cur = ";"+request.Request(inpt,"Enter Mood\n"+HumanBeing.Mood.PrintMood(),new String[]{"Mood"},new String[]{"There's no such mood"},1," ",0);
-            resStr += cur;
+            cur = request.Request(inpt,"Enter Mood\n"+HumanBeing.Mood.PrintMood(),new String[]{"Mood"},new String[]{"There's no such mood"},1," ",0);
+            resStr += ";"+cur;
         }
         if (cur != null)
         {
-            cur = ";"+request.Request(inpt,"Enter Car first - string, second - bool",new String[] {"Str","Bool"},new String[]{"Car name:String can't be empty","Cool: Bool can be true or false"},2," ",0);
-            resStr += cur;
+            cur = request.Request(inpt,"Enter Car first - string, second - bool",new String[] {"Str","Bool"},new String[]{"Car name:String can't be empty","Cool: Bool can be true or false"},2," ",0);
+            resStr += ";"+cur;
         }
 
-        System.out.println(resStr);
+//        System.out.println(resStr);
         if (cur != null)
         {
             ParceToCollection parser = new ParceToCollection();
@@ -69,7 +69,7 @@ public class AddCommand implements ICommand{
 
     @Override
     public String describe() {
-        return "Adds new element to HumanBeing LinkedHashSet. Input parameters: String name,Coordinates coordinates(Enter x=... y=...), Boolean realHero, boolean HasToothPick,Double ImpacktSeed(max 646), String Soundtrack, WeaponType weaponType, Mood mood(field can be null, write 0 or null), ";
+        return "Adds new element to HumanBeing LinkedHashSet. Input parameters: String name, Boolean realHero, boolean HasToothPick,Double ImpactSeed(max 646), String Soundtrack,Coordinates coordinates(Enter x=... y=...), WeaponType weaponType, Mood mood(field can be null, write 0 or null). first 5 arguments should be wrote in the same line as add";
     }
 
 }

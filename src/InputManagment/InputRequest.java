@@ -5,16 +5,9 @@ import Managment.InputChecker;
 import Managment.OutputManagment;
 
 import java.util.Objects;
-
+/*класс создания запросов на ввод*/
 public class InputRequest {
-//    public String Request(IInput input)
-//    {
-//    return "";
-//    }
-//    public String Request(IInput input, String message)
-//    {
-//    return "";
-//    }
+    /* метод обращается к классу ввода, откуда он берёт значения, затем, он обращается к классу проверки, в котором, если возникла ошибка, создаётся ещё один запрос, в котором просится заново ввести неправильные данные*/
     public String Request(IInput input, String message, String[] mod,String[] errors, int amount, String sep, int Invokes)
     {
         IInput missInput = new ConsoleInput();

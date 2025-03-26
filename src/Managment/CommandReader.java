@@ -29,7 +29,7 @@ public class CommandReader {
         }
         catch (Exception e)
         {
-            System.out.println("There is no such command as "+(tokens.length>0?tokens[0]:null));
+            System.out.println("There is no such command as "+((tokens.length>0) && (!tokens[0].trim().isEmpty())?tokens[0]:null));
         }
 
     }

@@ -20,6 +20,9 @@ public static void Add(){
     CommandMap.put("add_if_max",new AddIfMaxCommand());
     CommandMap.put("remove_lower",new RemoveLowerCommand());
     CommandMap.put("history",new HistoryCommand());
+    CommandMap.put("min_by_impactseed",new MinByImpactSeedCommand());
+    CommandMap.put("print_ascending",new PrintAscendingCommand());
+    CommandMap.put("print_field_ascending",new PrintFieldAscendingImpactSeed());
     }
 }
 

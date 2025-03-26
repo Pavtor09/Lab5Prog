@@ -56,10 +56,11 @@ public class RemoveCommand implements ICommand{
         {
             System.out.println("Wrong arguments");
         }
+
         caller.HistoryAdd("remove");
     }
     public String describe()
     {
-        return "Allows to remove element by its id";
+        return "Removes element by its id, specify the id in the same line as remove";
     }
 }

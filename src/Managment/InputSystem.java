@@ -5,17 +5,36 @@ import java.util.Scanner;
 import Commands.CommandManager;
 import Commands.ICommand;
 import Commands.WrongArgumentException;
+/*класс отвечает за ввд команд, осуществляет жизненный цикл программы*/
 
-public class InputSystem { //Класс отвечающий за ввод команд
+public class InputSystem {
     static Scanner sc = new Scanner(System.in);
-    static boolean Bflag = false;
-    static ICommand curcommand = null;
+    static boolean Bflag = false;//флаг, отвечающий за выход из программы
+    //static ICommand curcommand = null;
     public void Read() throws IOException {
         CommandReader MainReader = new CommandReader();
-     while (true){  //цикл работы программы
+        String line = null;
+     while (true)
+     {
 
-         String line = sc.nextLine();
-         MainReader.run(line);
+        try {
+            line = sc.nextLine();
+        }
+        catch (Exception e)
+        {
+            line = null;
+        }
+
+         if (line != null)
+         {
+             MainReader.run(line);
+
+        }
+         else {
+//             System.out.println("type exit to stop the program");
+//             line = " ";
+             Bflag = true;
+         }
          if (Bflag){
              break;
          }

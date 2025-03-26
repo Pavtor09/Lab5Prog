@@ -62,6 +62,6 @@ public class AddIfMaxCommand implements ICommand{
 
     public String describe()
     {
-        return "Adds element if its impact seed is biggest in the collection";
+        return "Adds element if its impact seed is the biggest in the collection. Arguments: String name, Boolean realHero, bool hasToothpick, double impact seed, String soundtrackName, Coordinates(first - long, second - double), weapon type, mood, Car(String name, bool true)";
     }
 }

@@ -49,6 +49,6 @@ public class RemoveLowerCommand implements ICommand {
 
 
     public String describe() {
-        return "";
+        return "Removes every element that have impact seed lower than you enter, specify id in the same line as remove_lower ";
     }
 }
