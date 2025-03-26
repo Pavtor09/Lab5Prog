@@ -1,7 +1,7 @@
 package InputManagment;
 
 import java.util.Scanner;
-
+/*Класс для ввода с консоли. По сути повторяет scanner. Нужен для того, чтобы стандартизировать ввод*/
 public class ConsoleInput implements IInput{
     Scanner sc = null;
     private boolean reqOut = true;

@@ -10,16 +10,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
+
+/*Класс позволяет добавлять элементы в коллекцию. Для ввода данных он использует запросы(класс InputRequest)*/
 public class AddCommand implements ICommand{
-    String name;
-    Boolean realHero;
-    boolean hasToothPick;
-    double impactSeed;
-    String soundtrack;
-    Coordinates cords;
-    HumanBeing.WeaponType weaponType;
-    HumanBeing.Mood mood;
-    Car car;
     IInput inpt = null;
     public void execute(String arg,IInput inpt,CommandReader caller)
     {

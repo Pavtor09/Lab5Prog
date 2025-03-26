@@ -5,7 +5,7 @@ import Managment.InputChecker;
 import Managment.OutputManagment;
 
 import java.util.Objects;
-/*класс создания запросов на ввод*/
+/*класс создания запросов на ввод и проверку*/
 public class InputRequest {
     /* метод обращается к классу ввода, откуда он берёт значения, затем, он обращается к классу проверки, в котором, если возникла ошибка, создаётся ещё один запрос, в котором просится заново ввести неправильные данные*/
     public String Request(IInput input, String message, String[] mod,String[] errors, int amount, String sep, int Invokes)
@@ -61,6 +61,8 @@ public class InputRequest {
         return ans.substring(0,ans.length()-1);
 
     }
+
+    //Передаёт уже имеющиеся данные на проверку, в остальном идентичен методу CheckRequest. Удобен для ввода в одну строку
     public String CheckRequest(IInput input, String[] args,String[] mod, String[] errors, int amount)
     {
 

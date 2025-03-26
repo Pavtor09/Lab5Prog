@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
+/*Класс проверки аргументов. Он бесполезный, но он ещё используется в некоторых командах и мне лень их переделывать. Так что он ещё существует*/
 public class InputChecker {
     public static boolean ArgCheck(String line,String sep, int offset)
     {

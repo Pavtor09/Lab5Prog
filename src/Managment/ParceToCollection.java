@@ -3,7 +3,7 @@ package Managment;
 import StartData.Car;
 import StartData.Coordinates;
 import StartData.HumanBeing;
-
+/*Класс конвертирует ввод в нужные типы данных и заполняет их в коллекцию*/
 public class ParceToCollection {
     public void ParceAndAdd(String args)
     {

@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/*Класс побайтово считывает данные с файла и преобразует их в нормальный вид*/
 public class Reader {
     public String Read(String path) throws IOException {
         FileInputStream geek = null;

@@ -3,7 +3,7 @@ package Managment;
 import InputManagment.IInput;
 import InputManagment.InputRequest;
 import StartData.HumanBeing;
-
+/*Класс проверяющий ввод на соответствие типам данных. Создаёт запросы на повторный ввод при нахождении ошибки*/
 public class ArgumentChecker {
     public String CurArgCheck(String arg, String mod, IInput inpt,String errorMessage,int Invokes)
     {

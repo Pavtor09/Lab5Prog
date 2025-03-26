@@ -1,7 +1,7 @@
 package InputManagment;
 
 import java.io.IOException;
-
+/*Класс для ввода и хранения данных с файла*/
 public class FileInput implements IInput{
     String path;
     String[] fileLines;

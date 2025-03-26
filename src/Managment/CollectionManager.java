@@ -30,6 +30,7 @@ public static void Add(String name,Boolean realHero, boolean toothpick, double i
         System.out.println("Element has been added");
         
 }
+
 public static void Add(String name,Boolean realHero, boolean toothpick, double impactSpeed, String soundtrackName, Coordinates coordinates, HumanBeing.WeaponType weaponType, HumanBeing.Mood mood, Car car,Long id,ZonedDateTime time) throws WrongArgumentException
 {
         HumanCollection.add(new HumanBeing(name,realHero,toothpick,impactSpeed,soundtrackName,coordinates,weaponType,mood,car,id,time));
@@ -51,13 +52,6 @@ HumanCollection.clear();
 HumanCollection = TempHumanCollection;
 }
 
-//    static boolean ArgChech(String name, Coordinates coordinates, Boolean realHero, boolean toothpick, double impactSpeed, String soundtrackName, HumanBeing.WeaponType weaponType, HumanBeing.Mood mood, Car car)
-//    {
-//        if (name == null || coordinates == null || realHero == null || impactSpeed >= 646 || soundtrackName == null || weaponType == null || car == null)
-//        {
-//            throw new WrongArgumentException("Some arguments are null or out of allowed range");
-//        }
-//     return true;
-//    }
+
 }
 

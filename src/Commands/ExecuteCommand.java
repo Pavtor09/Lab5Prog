@@ -15,7 +15,6 @@ public class ExecuteCommand implements ICommand{
         String path = tokens[1];
         if (!caller.recursion.contains(path))
         {
-            Reader Inpt = new Reader();
             inpt = new FileInput(path);
             CommandReader CR = new CommandReader();
             CR.inptobj = inpt;

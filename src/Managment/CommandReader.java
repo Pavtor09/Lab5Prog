@@ -8,6 +8,7 @@ import InputManagment.IInput;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*Класс отвечает за считывание команд. Нужен для разделения ввода с консоли и файла*/
 public class CommandReader {
     public ArrayList<String> recursion = new ArrayList<String>();
     public IInput inptobj = new ConsoleInput();
