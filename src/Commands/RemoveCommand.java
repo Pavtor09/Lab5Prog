@@ -1,6 +1,6 @@
 package Commands;
 
-import InputManagment.IInput;
+import InputManagment.ISeparatedInput;
 import Managment.CollectionManager;
 import Managment.CommandReader;
 import Managment.InputChecker;
@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class RemoveCommand implements ICommand{
 
-    public void execute(String arg, IInput inpt, CommandReader caller)
+    public void execute(String arg, ISeparatedInput inpt, CommandReader caller)
     {
         Set<HumanBeing> TempHumanCollection = new LinkedHashSet<>();
         String[] words = arg.split(" ");

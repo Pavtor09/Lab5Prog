@@ -1,4 +1,5 @@
 package StartData;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -20,8 +21,7 @@ public class HumanBeing {
     private Mood mood; //Поле может быть null
     private Car car; //Поле не может быть null
 
-    public HumanBeing(String name, Boolean realHero,boolean toothpick, double impactSpeed, String soundtrackName, Coordinates cords, WeaponType weaponType, Mood mood,Car car,Long id, ZonedDateTime crdate)
-    {
+    public HumanBeing(String name, Boolean realHero, boolean toothpick, double impactSpeed, String soundtrackName, Coordinates cords, WeaponType weaponType, Mood mood, Car car, Long id, ZonedDateTime crdate) {
 
         this.id = id;
         this.creationDate = crdate;
@@ -31,48 +31,49 @@ public class HumanBeing {
         this.hasToothpick = toothpick;
         this.impactSpeed = impactSpeed;
         this.soundtrackName = soundtrackName;
-        this.weaponType =  weaponType;
+        this.weaponType = weaponType;
         this.mood = mood;
         this.car = car;
 
     }
-    public ZonedDateTime GetTime()
-    {
+
+    public ZonedDateTime GetTime() {
         return this.creationDate;
     }
 
-    public String GetValues()
-    {
-    return name+";"+realHero+";"+hasToothpick+";"+impactSpeed+";"+soundtrackName+";"+coordinates.GetStringCords()+";"+weaponType+";"+mood+";"+car.GetStringCar()+";"+id+";"+creationDate;
+    public String GetValues() {
+        return name + ";" + realHero + ";" + hasToothpick + ";" + impactSpeed + ";" + soundtrackName + ";" + coordinates.GetStringCords() + ";" + weaponType + ";" + mood + ";" + car.GetStringCar() + ";" + id + ";" + creationDate;
     }
-    public long GetId()
-    {
+
+    public long GetId() {
         return id;
     }
-    public double GetImpactSeed()
-    {
+
+    public double GetImpactSeed() {
         return impactSpeed;
     }
+
     public enum WeaponType {
         HAMMER,
         RIFLE,
         KNIFE;
-        public static String PrintWeapons()
-        {
-            return WeaponType.HAMMER.toString()+"\n"+WeaponType.RIFLE.toString()+"\n"+WeaponType.KNIFE.toString();
+
+        public static String PrintWeapons() {
+            return WeaponType.HAMMER.toString() + "\n" + WeaponType.RIFLE.toString() + "\n" + WeaponType.KNIFE.toString();
         }
     }
+
     public enum Mood {
         LONGING,
         APATHY,
         CALM;
-        public static String PrintMood()
-        {
-            return LONGING.toString()+"\n"+APATHY.toString()+"\n"+CALM.toString();
+
+        public static String PrintMood() {
+            return LONGING.toString() + "\n" + APATHY.toString() + "\n" + CALM.toString();
         }
     }
-    public void SetMood(Mood M)
-    {
+
+    public void SetMood(Mood M) {
         this.mood = M;
     }
 }

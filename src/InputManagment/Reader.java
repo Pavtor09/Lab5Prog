@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 /*Класс побайтово считывает данные с файла и преобразует их в нормальный вид*/
 public class Reader {
     public String Read(String path) throws IOException {
@@ -21,16 +22,14 @@ public class Reader {
         } catch (FileNotFoundException fnfe) {
             System.out.println("NO Such File Exists");
         }
-        if (opened)
-        {
+        if (opened) {
             int cur = 0;
-            while(cur != -1)
-            {
+            while (cur != -1) {
                 cur = InStrm.read();
-                output += (cur!= -1)&&((char)cur != '\r') ? (char)cur:"";
+                output += (cur != -1) && ((char) cur != '\r') ? (char) cur : "";
 
             }
         }
-    return output;
+        return output;
     }
 }

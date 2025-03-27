@@ -1,9 +1,10 @@
 package InputManagment;
 
-public interface IInput {
+public interface ISeparatedInput {
     public String NextLine();
+
     public boolean HasNext();
-    
+
     public boolean RequiresOutput();
 
 }

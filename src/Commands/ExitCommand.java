@@ -1,14 +1,18 @@
 package Commands;
-import InputManagment.IInput;
+
+import InputManagment.ISeparatedInput;
 import Managment.*;
-public class ExitCommand implements  ICommand{
-    public void execute(String arg, IInput inpt,CommandReader caller)
-    {
+
+/**
+ * Класс выхода из команды
+ */
+public class ExitCommand implements ICommand {
+    public void execute(String arg, ISeparatedInput inpt, CommandReader caller) {
         InputSystem.BreakFlag();
 
     }
-    public String describe()
-    {
+
+    public String describe() {
         return "Exits the program";
     }
 }

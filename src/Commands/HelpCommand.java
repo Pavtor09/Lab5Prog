@@ -1,22 +1,24 @@
 package Commands;
 
-import InputManagment.IInput;
+import InputManagment.ISeparatedInput;
 import Managment.CommandReader;
 
-public class HelpCommand implements ICommand{
+/**
+ * Класс вывода всех команд и их аргументов
+ */
+public class HelpCommand implements ICommand {
 
 
-    public void execute(String arg, IInput inpt, CommandReader caller)
-    {
-        for (String name: CommandManager.CommandMap.keySet()) {
+    public void execute(String arg, ISeparatedInput inpt, CommandReader caller) {
+        for (String name : CommandManager.CommandMap.keySet()) {
             String value = CommandManager.CommandMap.get(name).describe();
-            System.out.println('"'+name+'"' + " " + value);
+            System.out.println('"' + name + '"' + " " + value + "\n");
+
         }
         caller.HistoryAdd("help");
     }
 
-    public String describe()
-    {
+    public String describe() {
         return "Prints all commands";
     }
 }

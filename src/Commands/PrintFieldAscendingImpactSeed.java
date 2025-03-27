@@ -1,6 +1,6 @@
 package Commands;
 
-import InputManagment.IInput;
+import InputManagment.ISeparatedInput;
 import Managment.CollectionManager;
 import Managment.CommandReader;
 import StartData.HumanBeing;
@@ -10,19 +10,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-public class PrintFieldAscendingImpactSeed implements ICommand{
-    public void execute(String arg, IInput inptm, CommandReader caller) throws IOException {
+public class PrintFieldAscendingImpactSeed implements ICommand {
+    public void execute(String arg, ISeparatedInput inptm, CommandReader caller) throws IOException {
         Comparator<HumanBeing> SeedComp = Comparator.comparingDouble(HumanBeing::GetImpactSeed);
         ArrayList<HumanBeing> CurCollection = new ArrayList<HumanBeing>();
         Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
-        while (iter.hasNext())
-        {
+        while (iter.hasNext()) {
             CurCollection.add(iter.next());
         }
         CurCollection.sort(SeedComp);
-        for(int i = 0;i < CurCollection.size();i++)
-        {
-            System.out.println(CurCollection.get(i).GetValues());
+        for (HumanBeing humanBeing : CurCollection) {
+            System.out.println(humanBeing.GetValues());
         }
         caller.HistoryAdd("print_field_ascending");
     }
