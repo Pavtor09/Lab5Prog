@@ -1,7 +1,6 @@
 package Commands;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Класс хранения команд
@@ -10,7 +9,7 @@ public class CommandManager {
 
     public static HashMap<String, ICommand> CommandMap = new HashMap<>();
 
-    public static void Add() {
+    public static void LoadCommands() {
         CommandMap.put("help", new HelpCommand());
         CommandMap.put("exit", new ExitCommand());
         CommandMap.put("add", new AddCommand());

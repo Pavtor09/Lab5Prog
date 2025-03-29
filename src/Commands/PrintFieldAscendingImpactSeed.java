@@ -3,6 +3,7 @@ package Commands;
 import InputManagment.ISeparatedInput;
 import Managment.CollectionManager;
 import Managment.CommandReader;
+import OutputManagment.FormatedArgsOutput;
 import StartData.HumanBeing;
 
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.util.Iterator;
 
 public class PrintFieldAscendingImpactSeed implements ICommand {
     public void execute(String arg, ISeparatedInput inptm, CommandReader caller) throws IOException {
+        FormatedArgsOutput out = new FormatedArgsOutput();
+        int elementIndex = 0;
         Comparator<HumanBeing> SeedComp = Comparator.comparingDouble(HumanBeing::GetImpactSeed);
         ArrayList<HumanBeing> CurCollection = new ArrayList<HumanBeing>();
         Iterator<HumanBeing> iter = CollectionManager.GetIenerator();
@@ -20,7 +23,9 @@ public class PrintFieldAscendingImpactSeed implements ICommand {
         }
         CurCollection.sort(SeedComp);
         for (HumanBeing humanBeing : CurCollection) {
-            System.out.println(humanBeing.GetValues());
+            elementIndex += 1;
+            out.AllArgOutput(humanBeing.GetValues(),elementIndex);
+
         }
         caller.HistoryAdd("print_field_ascending");
     }

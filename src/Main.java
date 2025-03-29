@@ -12,7 +12,7 @@ public class Main {
         StartReader stR = new StartReader();
         stR.Load();
 
-    CommandManager.Add();
+    CommandManager.LoadCommands();
     InputSystem runner = new InputSystem();
     runner.Read();
     }

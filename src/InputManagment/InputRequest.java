@@ -35,8 +35,8 @@ public class InputRequest {
         if (args.length != amount) {
 //            output.Println("Wrong amount of request arguments");
             InputRequest req = new InputRequest();
-
-            return req.Request(missInput, "wrong amount of arguments \n" + message, mod, errors, amount, sep, Invokes + 1);
+            output.Println("wrong amount of arguments");
+            return req.Request(missInput,message, mod, errors, amount, sep, Invokes + 1);
         }
         if (mod.length != amount) {
             output.Println("Wrong amount of request mods");
