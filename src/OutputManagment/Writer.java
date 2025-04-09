@@ -24,7 +24,7 @@ public class Writer implements IOutput{
         {
         outputStream = new FileOutputStream(path);
         }
-        catch (Exception e)
+        catch (FileNotFoundException e)
         {
             System.out.println("File not found");
         }

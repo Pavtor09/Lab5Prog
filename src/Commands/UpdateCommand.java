@@ -83,13 +83,13 @@ public class UpdateCommand implements ICommand {
                         }
                         ValueMap.replace(keyValues.get(i), argValues.get(i));
                     }
-                    String res = "";
+                    StringBuilder res = new StringBuilder();
                     if (!breakflag) {
 
                         for (int i = 0; i < order.length; i++) {
-                            res += ValueMap.get(order[i]) + ((i != order.length - 1) ? ";" : "");
+                            res.append(ValueMap.get(order[i])).append((i != order.length - 1) ? ";" : "");
                         }
-                        String[] Values = res.replaceAll(" ",";").split(";");
+                        String[] Values = res.toString().replaceAll(" ", ";").split(";");
                         System.out.println(res);
                         TempHumanCollection.add(new HumanBeing(Values[0], Values[1].equals("true"), Values[2].equals("true"), Double.parseDouble(Values[3]), Values[4], new Coordinates(Long.parseLong(Values[5]), Double.parseDouble(Values[6])), HumanBeing.WeaponType.valueOf(Values[7]), (Values[8].isEmpty() || Values[8].equals("null")) ? null : HumanBeing.Mood.valueOf(Values[8]), new Car(Values[9], Values[10].equals("true")), Long.parseLong(Values[11]), changeHuman.GetTime()));
                         while (iter.hasNext()) {
@@ -98,7 +98,6 @@ public class UpdateCommand implements ICommand {
                         }
 
                         CollectionManager.CollectionReplace(TempHumanCollection);
-
 
 
                     }

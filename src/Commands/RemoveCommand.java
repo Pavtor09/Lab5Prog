@@ -57,6 +57,8 @@ public class RemoveCommand implements ICommand{
             System.out.println("Wrong arguments");
         }
 
+        
+
         caller.HistoryAdd("remove");
     }
     public String describe()
