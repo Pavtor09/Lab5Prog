@@ -4,8 +4,11 @@ import Commands.CommandManager;
 import Commands.ICommand;
 import InputManagment.ConsoleSeparatedInput;
 import InputManagment.ISeparatedInput;
+import InputManagment.Pack;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /*Класс отвечает за считывание команд. Нужен для разделения ввода с консоли и файла*/
@@ -22,7 +25,12 @@ public class CommandReader {
         if (tokens.length > 0) {
 
             curcommand = CommandManager.CommandMap.get(tokens[0]);
-
+            Pack commandPack = new Pack(curcommand,line);
+            ByteArrayOutputStream bos_command = new ByteArrayOutputStream();
+            try (ObjectOutputStream oos = new ObjectOutputStream(bos_command)) {
+                oos.writeObject(commandPack);
+            }
+            byte[] bytes = bos_command.toByteArray();
         }
         try {
 
