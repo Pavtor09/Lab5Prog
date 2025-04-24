@@ -24,6 +24,7 @@ public class InputSystem {
                 line = null;
             }
 
+
             if (line != null) {
                 MainReader.run(line);
 
